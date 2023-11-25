@@ -31,7 +31,7 @@ namespace GER_XmlParser.entities
             }
         }
 
-        public List<XmlNode> FindReferences(string str)
+        public XmlNodeList FindReferences(string str)
         {
             string xPath = string.Format(@".//ERModelItemValueDefinition[contains(@Name, '{0}')]", str);
             return this.Compute(this.DatasourceNode, xPath);

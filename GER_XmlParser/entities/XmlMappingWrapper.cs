@@ -8,7 +8,7 @@ using System.Xml;
 
 namespace GER_XmlParser.entities
 {
-    public class XmlFileMappingWrapper : XmlFileWrapper
+    public class XmlMappingWrapper : XmlFileWrapper
     {
         // FIELDS
         protected const string FIRST_DATASOURCE_BASE_NODE_XPATH = @"/ERSolutionVersion/Contents./ERModelMappingVersion/Mapping/ERModelMapping/Datasource/ERModelDefinition/Contents.";
@@ -20,7 +20,7 @@ namespace GER_XmlParser.entities
         public XmlNode BindingNode { get { return this._bindingNode; } }
 
         // CONSTRUCTORS
-        public XmlFileMappingWrapper(string filePath) : base(filePath)
+        public XmlMappingWrapper(string filePath) : base(filePath)
         {
             this._datasourceNode = this.XmlParser.SelectSingleNode(FIRST_DATASOURCE_BASE_NODE_XPATH);
             this._bindingNode = this.XmlParser.SelectSingleNode(FIRST_BINDING_BASE_NODE_XPATH);

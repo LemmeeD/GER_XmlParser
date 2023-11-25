@@ -25,18 +25,23 @@ namespace GER_XmlParser.entities
         }
 
         // METHODS
-        protected List<XmlNode> Compute(XmlNode startingNode, string xPath)
+        //protected List<XmlNode> Compute(XmlNode startingNode, string xPath)
+        //{
+        //    List<XmlNode> result = new List<XmlNode>();
+        //    XmlNodeList nodeList = startingNode.SelectNodes(xPath);
+        //    foreach (XmlNode node in nodeList)
+        //    {
+        //        result.Add(node);
+        //    }
+        //    return result;
+        //}
+
+        protected XmlNodeList Compute(XmlNode startingNode, string xPath)
         {
-            List<XmlNode> result = new List<XmlNode>();
-            XmlNodeList nodeList = startingNode.SelectNodes(xPath);
-            foreach (XmlNode node in nodeList)
-            {
-                result.Add(node);
-            }
-            return result;
+            return startingNode.SelectNodes(xPath);
         }
 
-        public List<XmlNode> Compute(string xPath)
+        public XmlNodeList Compute(string xPath)
         {
             return this.Compute(this.XmlParser, xPath);
         }

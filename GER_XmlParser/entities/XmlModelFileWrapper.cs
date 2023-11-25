@@ -69,15 +69,17 @@ namespace GER_XmlParser.entities
         }
 
         // METHODS
-        protected List<XmlNode> ComputeFromBase(string xPath)
+        protected XmlNodeList ComputeFromBase(string xPath)
         {
             return this.Compute(this.BaseContentsNode, xPath);
         }
 
-        public List<XmlNode> FindReferences(string str)
+        public MyTree<XmlNode> FindReferences(string str)
         {
             string xPath = string.Format(@".//*[contains(@Name, '{0}')]", str);
-            return this.ComputeFromBase(xPath);
+            //string xPath = string.Format(@"(.//ERDataContainerDescriptorItem | .//ERDataContainerDescriptor[not(substring(@Name, string-length(@Name) - string-length('_1') +1) != '_1')])[contains(@Name, '{0}')]", str);
+            XmlNodeList nodes = this.ComputeFromBase(xPath);
+            return MyTree<XmlNode>.ComputeFromModelFindRef(nodes, this.BaseContentsNode);
         }
     }
 }

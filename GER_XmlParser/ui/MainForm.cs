@@ -1,7 +1,8 @@
 using System.Data;
 using System.Windows.Forms;
-
+using System.Xml;
 using GER_XmlParser.entities;
+using GER_XmlParser.utils;
 
 namespace GER_XmlParser
 {
@@ -10,6 +11,14 @@ namespace GER_XmlParser
         // FIELDS
         // PROPERTIES
         public XmlModelFileWrapper ModelWrapper { get; set; }
+        public XmlMappingWrapper MappingWrapper { get; set; }
+        public XmlFormatFileWrapper FormatWrapper { get; set; }
+        protected static Func<MyTreeNode<XmlNode>, TreeNode> TRANSLATE_TREENODES = delegate (MyTreeNode<XmlNode> myNode)
+        {
+            TreeNode newNode = new TreeNode();
+            newNode.Text = XmlNodeUtils.StringifyAsModel(myNode.Content);
+            return newNode;
+        };
 
         // CONSTRUCTORS
         public MainForm()
@@ -18,6 +27,26 @@ namespace GER_XmlParser
         }
 
         // METHODS
+        protected void ImportModel()
+        {
+            try
+            {
+                this.ModelWrapper = new XmlModelFileWrapper(this.textBoxModelFile.Text);
+            }
+            catch (Exception)
+            {
+                this.groupBoxModel.Enabled = false;
+                Alert("File .xml non valido per un model");
+                return;
+            }
+            this.groupBoxModel.Enabled = true;
+            this.textBoxModelName.Text = this.ModelWrapper.Name;
+            this.textBoxModelDescr.Text = this.ModelWrapper.Description;
+            this.textBoxModelVendor.Text = this.ModelWrapper.Vendor;
+            this.textBoxModelPublicVersNum.Text = this.ModelWrapper.PublicVersionNumber;
+        }
+
+        // EVENTS
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.groupBoxModel.Enabled = false;
@@ -39,7 +68,6 @@ namespace GER_XmlParser
 
         protected static OpenFileDialog BrowseXmlFile()
         {
-            string result;
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";
@@ -50,41 +78,23 @@ namespace GER_XmlParser
             }
         }
 
+        private void buttonModelUpload_Click(object sender, EventArgs e)
+        {
+            this.ImportModel();
+        }
+
+        // STATIC METHODS
         public static void Alert(string message)
         {
             MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
-        private void buttonModelUpload_Click(object sender, EventArgs e)
+        private void buttonModelFindRef_Click(object sender, EventArgs e)
         {
-            try
-            {
-                new XmlModelFileWrapper(this.textBoxModelFile.Text);
-                this.groupBoxModel.Enabled = true;
-                this.ImportModel();
-            }
-            catch (Exception)
-            {
-                this.groupBoxModel.Enabled = false;
-                Alert("File .xml non valido per un model");
-            }
-        }
-
-        /// <summary>
-        /// Si aspetta di trovare il percorso di un file .xml valido nella TextBox di riferimento
-        /// </summary>
-        protected void ImportModel()
-        {
-            try
-            {
-                this.ModelWrapper = new XmlModelFileWrapper(this.textBoxModelFile.Text);
-            }
-            catch (Exception ex)
-            {
-                Alert(ex.Message);
-            }
-            this.textBoxModelName.Text = this.ModelWrapper.Name;
-            this.textBoxModelDescr.Text = this.ModelWrapper.Description;
+            if (this.textBoxModelFindRef.Text == "") return;
+            MyTree<XmlNode> myTree = this.ModelWrapper.FindReferences(this.textBoxModelFindRef.Text);
+            this.treeViewModelFindRef.Nodes.Clear();
+            myTree.PopulateTreeViewControl(this.treeViewModelFindRef, TRANSLATE_TREENODES);
         }
     }
 }

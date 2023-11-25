@@ -45,11 +45,25 @@ namespace GER_XmlParser.utils
             }
         }
 
+        public static List<XmlNode> ParentsChainUntilReserve(XmlNode startingNode, XmlNode targetNode)
+        {
+            List<XmlNode> result = ParentsChainUntil(startingNode, targetNode, new HashSet<string>());
+            result.Reverse();
+            return result;
+        }
+
         public static List<XmlNode> ParentsChainUntilReserve(XmlNode startingNode, XmlNode targetNode, HashSet<string> blacklistNodeNames)
         {
             List<XmlNode> result = ParentsChainUntil(startingNode, targetNode, blacklistNodeNames);
             result.Reverse();
             return result;
+        }
+
+        public static List<XmlNode> ParentsChainUntil(XmlNode startingNode, XmlNode targetNode)
+        {
+            List<XmlNode> chains = new List<XmlNode>();
+            chains.Add(startingNode);
+            return InnerParentsChainUntil(startingNode, targetNode, chains, new HashSet<string>());
         }
 
         public static List<XmlNode> ParentsChainUntil(XmlNode startingNode, XmlNode targetNode, HashSet<string> blacklistNodeNames)
@@ -110,7 +124,7 @@ namespace GER_XmlParser.utils
             return result;
         }
 
-        protected static string StringifyAsModel(XmlNode node)
+        public static string StringifyAsModel(XmlNode node)
         {
             string result = "";
             if (node.Attributes == null) throw new ArgumentException("Non dovrebbe essere possibile");

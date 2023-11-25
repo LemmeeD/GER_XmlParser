@@ -36,14 +36,17 @@
             labelModelFile = new Label();
             groupBoxModel = new GroupBox();
             groupBoxModelInfo = new GroupBox();
+            textBoxModelPublicVersNum = new TextBox();
+            labelModelPublicVersNum = new Label();
             labelModelProvider = new Label();
-            textBox2 = new TextBox();
+            textBoxModelVendor = new TextBox();
             textBoxModelDescr = new TextBox();
             labelModelDescr = new Label();
             textBoxModelName = new TextBox();
             labelModelName = new Label();
             tabControlModel = new TabControl();
             tabPageModelFindRef = new TabPage();
+            treeViewModelFindRef = new TreeView();
             buttonModelFindRef = new Button();
             textBoxModelFindRef = new TextBox();
             labelModelOpFindRef = new Label();
@@ -95,7 +98,7 @@
             // 
             // buttonModelBrowser
             // 
-            buttonModelBrowser.Location = new Point(549, 25);
+            buttonModelBrowser.Location = new Point(6, 25);
             buttonModelBrowser.Name = "buttonModelBrowser";
             buttonModelBrowser.Size = new Size(94, 29);
             buttonModelBrowser.TabIndex = 2;
@@ -105,7 +108,7 @@
             // 
             // textBoxModelFile
             // 
-            textBoxModelFile.Location = new Point(6, 26);
+            textBoxModelFile.Location = new Point(106, 26);
             textBoxModelFile.Name = "textBoxModelFile";
             textBoxModelFile.Size = new Size(537, 27);
             textBoxModelFile.TabIndex = 1;
@@ -132,8 +135,10 @@
             // 
             // groupBoxModelInfo
             // 
+            groupBoxModelInfo.Controls.Add(textBoxModelPublicVersNum);
+            groupBoxModelInfo.Controls.Add(labelModelPublicVersNum);
             groupBoxModelInfo.Controls.Add(labelModelProvider);
-            groupBoxModelInfo.Controls.Add(textBox2);
+            groupBoxModelInfo.Controls.Add(textBoxModelVendor);
             groupBoxModelInfo.Controls.Add(textBoxModelDescr);
             groupBoxModelInfo.Controls.Add(labelModelDescr);
             groupBoxModelInfo.Controls.Add(textBoxModelName);
@@ -145,6 +150,23 @@
             groupBoxModelInfo.TabStop = false;
             groupBoxModelInfo.Text = "Info";
             // 
+            // textBoxModelPublicVersNum
+            // 
+            textBoxModelPublicVersNum.Enabled = false;
+            textBoxModelPublicVersNum.Location = new Point(6, 118);
+            textBoxModelPublicVersNum.Name = "textBoxModelPublicVersNum";
+            textBoxModelPublicVersNum.Size = new Size(199, 27);
+            textBoxModelPublicVersNum.TabIndex = 7;
+            // 
+            // labelModelPublicVersNum
+            // 
+            labelModelPublicVersNum.AutoSize = true;
+            labelModelPublicVersNum.Location = new Point(6, 95);
+            labelModelPublicVersNum.Name = "labelModelPublicVersNum";
+            labelModelPublicVersNum.Size = new Size(65, 20);
+            labelModelPublicVersNum.TabIndex = 6;
+            labelModelPublicVersNum.Text = "Versione";
+            // 
             // labelModelProvider
             // 
             labelModelProvider.AutoSize = true;
@@ -154,13 +176,13 @@
             labelModelProvider.TabIndex = 5;
             labelModelProvider.Text = "Provider";
             // 
-            // textBox2
+            // textBoxModelVendor
             // 
-            textBox2.Enabled = false;
-            textBox2.Location = new Point(489, 46);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(222, 27);
-            textBox2.TabIndex = 4;
+            textBoxModelVendor.Enabled = false;
+            textBoxModelVendor.Location = new Point(489, 46);
+            textBoxModelVendor.Name = "textBoxModelVendor";
+            textBoxModelVendor.Size = new Size(222, 27);
+            textBoxModelVendor.TabIndex = 4;
             // 
             // textBoxModelDescr
             // 
@@ -199,24 +221,32 @@
             // tabControlModel
             // 
             tabControlModel.Controls.Add(tabPageModelFindRef);
-            tabControlModel.Location = new Point(6, 313);
+            tabControlModel.Location = new Point(6, 204);
             tabControlModel.Name = "tabControlModel";
             tabControlModel.SelectedIndex = 0;
-            tabControlModel.Size = new Size(725, 267);
+            tabControlModel.Size = new Size(725, 376);
             tabControlModel.TabIndex = 4;
             // 
             // tabPageModelFindRef
             // 
+            tabPageModelFindRef.Controls.Add(treeViewModelFindRef);
             tabPageModelFindRef.Controls.Add(buttonModelFindRef);
             tabPageModelFindRef.Controls.Add(textBoxModelFindRef);
             tabPageModelFindRef.Controls.Add(labelModelOpFindRef);
             tabPageModelFindRef.Location = new Point(4, 29);
             tabPageModelFindRef.Name = "tabPageModelFindRef";
             tabPageModelFindRef.Padding = new Padding(3);
-            tabPageModelFindRef.Size = new Size(717, 234);
+            tabPageModelFindRef.Size = new Size(717, 343);
             tabPageModelFindRef.TabIndex = 0;
             tabPageModelFindRef.Text = "Trova riferimenti";
             tabPageModelFindRef.UseVisualStyleBackColor = true;
+            // 
+            // treeViewModelFindRef
+            // 
+            treeViewModelFindRef.Location = new Point(6, 59);
+            treeViewModelFindRef.Name = "treeViewModelFindRef";
+            treeViewModelFindRef.Size = new Size(705, 278);
+            treeViewModelFindRef.TabIndex = 4;
             // 
             // buttonModelFindRef
             // 
@@ -226,6 +256,7 @@
             buttonModelFindRef.TabIndex = 3;
             buttonModelFindRef.Text = "Ricerca";
             buttonModelFindRef.UseVisualStyleBackColor = true;
+            buttonModelFindRef.Click += buttonModelFindRef_Click;
             // 
             // textBoxModelFindRef
             // 
@@ -270,6 +301,7 @@
             ClientSize = new Size(781, 708);
             Controls.Add(tabControlMain);
             Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "GER Xml Parser";
             Load += MainForm_Load;
             tabControlMain.ResumeLayout(false);
@@ -300,12 +332,15 @@
         private GroupBox groupBoxModelInfo;
         private TextBox textBoxModelName;
         private Label labelModelName;
-        private TextBox textBox2;
+        private TextBox textBoxModelVendor;
         private TextBox textBoxModelDescr;
         private Label labelModelDescr;
         private Button buttonModelFindRef;
         private TextBox textBoxModelFindRef;
         private Label labelModelOpFindRef;
         private Label labelModelProvider;
+        private TextBox textBoxModelPublicVersNum;
+        private Label labelModelPublicVersNum;
+        private TreeView treeViewModelFindRef;
     }
 }
