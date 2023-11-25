@@ -45,5 +45,10 @@ namespace GER_XmlParser.entities
         {
             return this.Compute(this.XmlParser, xPath);
         }
+
+        public void WriteFile()
+        {
+            this.XmlParser.Save(this.FilePath);
+        }
     }
 }

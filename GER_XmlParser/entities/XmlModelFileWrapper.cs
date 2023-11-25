@@ -59,7 +59,7 @@ namespace GER_XmlParser.entities
             if (temp == null) _description = "";
             else _description = temp.Value;
             //
-            temp = this.BasicInfoNode3.Attributes["Name"];
+            temp = this.BasicInfoNode2.Attributes["Name"];
             if (temp == null) _name = "";
             else _name = temp.Value;
             //

@@ -117,4 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="labelFormatRebase.Text" xml:space="preserve">
+    <value>Effettuare il Rebase sul Format non sempre funziona, soprattutto con GER che estendono altri GER, questo perché il rebase non va ad allacciarsi all'ultima versione del Model che si pensa. Come workaround allora è necessario esportare il Format, eliminare alcuni attributi XML e reimportarlo.
+
+Gli attributi sono: RevisionNumber="&lt;numeroX&gt;".
+
+Con questa operazione si effettua l'operazione di rimozione degli attributi XML appena citati.
+</value>
+  </data>
 </root>
