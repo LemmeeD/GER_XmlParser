@@ -7,7 +7,7 @@ using System.Xml;
 
 namespace GER_XmlParser.entities
 {
-    internal class XmlFileWrapper
+    public abstract class XmlFileWrapper
     {
         // FIELDS
         protected string _filePath;

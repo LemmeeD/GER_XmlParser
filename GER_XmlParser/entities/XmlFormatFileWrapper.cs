@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GER_XmlParser.exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Xml;
 
 namespace GER_XmlParser.entities
 {
-    internal class XmlFormatFileWrapper : XmlFileWrapper
+    public class XmlFormatFileWrapper : XmlFileWrapper
     {
         // FIELDS
         protected const string FIRST_DATASOURCE_BASE_NODE_XPATH = @"/ERSolutionVersion/Contents./ERFormatMappingVersion/Mapping/ERFormatMapping/Datasource/ERModelDefinition/Contents.";
@@ -24,6 +25,10 @@ namespace GER_XmlParser.entities
         {
             this._datasourceNode = this.XmlParser.SelectSingleNode(FIRST_DATASOURCE_BASE_NODE_XPATH);
             this._bindingNode = this.XmlParser.SelectSingleNode(FIRST_BINDING_BASE_NODE_XPATH);
+            if ((this.DatasourceNode == null) || (this.BindingNode == null))
+            {
+                throw new InvalidMappingException(string.Format("File individuato dal percorso '{0}' non valido come Format", filePath));
+            }
         }
 
         public List<XmlNode> FindReferences(string str)
