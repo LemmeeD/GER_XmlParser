@@ -14,7 +14,7 @@ namespace GER_XmlParser.utils
     internal class CollectionUtils
     {
         // FIELDS
-        public const bool PRINT_INDEXES = true;
+        public const bool PRINT_INDEXES = false;
         // PROPERTIES
 
         // CONSTRUCTORS

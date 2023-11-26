@@ -13,28 +13,31 @@ namespace GER_XmlParser.entities
         // FIELDS
         // PROPERTIES
         public T Content { get; }
+        public string DisplayText { get; }
         public MyTreeNode<T> Parent { get; set; }
         public List<MyTreeNode<T>> Children { get; set; }
         public bool IsRoot { get { return (this.Parent == null); } }
         public bool IsLeaf { get { return (this.Children.Count == 0); } }
 
         // CONSTRUCTORS
-        public MyTreeNode(T content)
+        public MyTreeNode(T content, string displayText)
         {
             this.Content = content;
+            this.DisplayText = displayText;
             this.Parent = null;
             this.Children = new List<MyTreeNode<T>>();
         }
 
-        public MyTreeNode(MyTreeNode<T> parent, T content)
+        public MyTreeNode(MyTreeNode<T> parent, T content, string displayText)
         {
             this.Content = content;
+            this.DisplayText = displayText;
             this.Parent = parent;
             this.Children = new List<MyTreeNode<T>>();
         }
 
         // METHODS
-        public MyTreeNode<T> AddChild(T newContent)
+        public MyTreeNode<T> AddChild(T newContent, string displayText)
         {
             if (newContent == null) throw new ApplicationException("Contenuto nullo");
             MyTreeNode<T> alreadyExisting = null;
@@ -48,7 +51,7 @@ namespace GER_XmlParser.entities
             }
             if (alreadyExisting == null)
             {
-                MyTreeNode<T> newChild = new MyTreeNode<T>(this, newContent);
+                MyTreeNode<T> newChild = new MyTreeNode<T>(this, newContent, displayText);
                 this.Children.Add(newChild);
                 return newChild;
             }
@@ -77,6 +80,15 @@ namespace GER_XmlParser.entities
         public void Traverse(Action<T> action)
         {
             action(this.Content);
+            foreach (MyTreeNode<T> child in this.Children)
+            {
+                child.Traverse(action);
+            }
+        }
+
+        public void Traverse(Action<MyTreeNode<T>> action)
+        {
+            action(this);
             foreach (MyTreeNode<T> child in this.Children)
             {
                 child.Traverse(action);
@@ -117,7 +129,7 @@ namespace GER_XmlParser.entities
 
         public override string ToString()
         {
-            return this.Content.ToString();
+            return this.DisplayText;
         }
     }
 }

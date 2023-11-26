@@ -1,9 +1,11 @@
-﻿using System;
+﻿using GER_XmlParser.utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Wmhelp.XPath2;
 
 namespace GER_XmlParser.entities
 {
@@ -25,25 +27,47 @@ namespace GER_XmlParser.entities
         }
 
         // METHODS
-        //protected List<XmlNode> Compute(XmlNode startingNode, string xPath)
-        //{
-        //    List<XmlNode> result = new List<XmlNode>();
-        //    XmlNodeList nodeList = startingNode.SelectNodes(xPath);
-        //    foreach (XmlNode node in nodeList)
-        //    {
-        //        result.Add(node);
-        //    }
-        //    return result;
-        //}
-
-        protected XmlNodeList Compute(XmlNode startingNode, string xPath)
+        public XmlNode ComputeFirstXPath1(string xPath)
         {
-            return startingNode.SelectNodes(xPath);
+            return this.ComputeFirstXPath1(this.XmlParser, xPath);
         }
 
-        public XmlNodeList Compute(string xPath)
+        protected XmlNode ComputeFirstXPath1(XmlNode startingNode, string xPath)
         {
-            return this.Compute(this.XmlParser, xPath);
+            return startingNode.SelectSingleNode(xPath);
+        }
+
+        public List<XmlNode> ComputeXPath1(string xPath)
+        {
+            return this.ComputeXPath1(this.XmlParser, xPath);
+
+        }
+
+        protected List<XmlNode> ComputeXPath1(XmlNode startingNode, string xPath)
+        {
+            XmlNodeList temp = startingNode.SelectNodes(xPath);
+            return XmlNodeListUtils.ToSortedList(temp);
+        }
+
+        protected XmlNode ComputeFirstXPath2(string xPath)
+        {
+            return this.ComputeFirstXPath2(this.XmlParser, xPath);
+        }
+
+        protected XmlNode ComputeFirstXPath2(XmlNode startingNode, string xPath)
+        {
+            return startingNode.XPath2SelectSingleNode(xPath);
+        }
+
+        protected List<XmlNode> ComputeXPath2(string xPath)
+        {
+            return this.ComputeXPath2(this.XmlParser, xPath);
+        }
+
+        protected List<XmlNode> ComputeXPath2(XmlNode startingNode, string xPath)
+        {
+            XmlNodeList temp = startingNode.XPath2SelectNodes(xPath);
+            return XmlNodeListUtils.ToSortedList(temp);
         }
 
         public void WriteFile()

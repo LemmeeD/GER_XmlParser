@@ -40,11 +40,11 @@ namespace GER_XmlParser.entities
         // CONSTRUCTORS
         public XmlModelFileWrapper(string filePath) : base(filePath)
         {
-            this._basicInfoNode1 = this.XmlParser.SelectSingleNode(BASIC_INFO_NODE1_XPATH);
-            this._basicInfoNode2 = this.XmlParser.SelectSingleNode(BASIC_INFO_NODE2_XPATH);
-            this._basicInfoNode3 = this.XmlParser.SelectSingleNode(BASIC_INFO_NODE3_XPATH);
-            this._baseContentsNode = this.XmlParser.SelectSingleNode(BASE_CONTENTS_NODE_XPATH);
-            this._vendorNode = this.XmlParser.SelectSingleNode(VENDOR_NODE_XPATH);
+            this._basicInfoNode1 = this.ComputeFirstXPath1(BASIC_INFO_NODE1_XPATH);
+            this._basicInfoNode2 = this.ComputeFirstXPath1(BASIC_INFO_NODE2_XPATH);
+            this._basicInfoNode3 = this.ComputeFirstXPath1(BASIC_INFO_NODE3_XPATH);
+            this._baseContentsNode = this.ComputeFirstXPath1(BASE_CONTENTS_NODE_XPATH);
+            this._vendorNode = this.ComputeFirstXPath1(VENDOR_NODE_XPATH);
             if ((this.BasicInfoNode1 == null) || (this.BasicInfoNode2 == null) || (this.BasicInfoNode3 == null) || (this.BaseContentsNode == null) || (this.VendorNode == null))
             {
                 throw new InvalidModelException(string.Format("File individuato dal percorso '{0}' non valido come Model", filePath));
@@ -69,16 +69,18 @@ namespace GER_XmlParser.entities
         }
 
         // METHODS
-        protected XmlNodeList ComputeFromBase(string xPath)
-        {
-            return this.Compute(this.BaseContentsNode, xPath);
-        }
-
         public MyTree<XmlNode> FindReferences(string str)
         {
-            string xPath = string.Format(@".//*[contains(@Name, '{0}')]", str);
-            //string xPath = string.Format(@"(.//ERDataContainerDescriptorItem | .//ERDataContainerDescriptor[not(substring(@Name, string-length(@Name) - string-length('_1') +1) != '_1')])[contains(@Name, '{0}')]", str);
-            XmlNodeList nodes = this.ComputeFromBase(xPath);
+            //string xPath = string.Format(@".//*[contains(@Name, '{0}') and not(ends-with(@Name, '_1'))]", str);
+            string xPath = string.Format(@"(.//ERDataContainerDescriptorItem | .//ERDataContainerDescriptor[not(ends-with(@Name, '_1')) or @IsEnum='1'])[contains(@Name, '{0}')]", str);
+            List<XmlNode> nodes = this.ComputeXPath2(this.BaseContentsNode, xPath);
+            return MyTree<XmlNode>.ComputeFromModelFindRef(nodes, this.BaseContentsNode);
+        }
+
+        public MyTree<XmlNode> FindEntireModelContents()
+        {
+            string xPath = @".//ERDataContainerDescriptorItem | .//ERDataContainerDescriptor";
+            List<XmlNode> nodes = this.ComputeXPath1(this.BaseContentsNode, xPath);
             return MyTree<XmlNode>.ComputeFromModelFindRef(nodes, this.BaseContentsNode);
         }
     }

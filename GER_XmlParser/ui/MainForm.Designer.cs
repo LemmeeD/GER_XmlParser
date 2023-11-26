@@ -47,6 +47,9 @@
             labelModelName = new Label();
             tabControlModel = new TabControl();
             tabPageModelFindRef = new TabPage();
+            buttonModelFindRefCollapse = new Button();
+            buttonModelFindRefExpand = new Button();
+            buttonModelFindRefReset = new Button();
             treeViewModelFindRef = new TreeView();
             buttonModelFindRef = new Button();
             textBoxModelFindRef = new TextBox();
@@ -56,6 +59,8 @@
             labelMapVersion = new Label();
             groupBoxMap = new GroupBox();
             groupBoxMapInfo = new GroupBox();
+            textBoxMapModelMapping = new TextBox();
+            labelMapModelMapping = new Label();
             textBoxMapVers = new TextBox();
             labelMapPublicVers = new Label();
             labelMapProvider = new Label();
@@ -94,12 +99,12 @@
             textBoxFormatFindRef = new TextBox();
             labelFormatFindRef = new Label();
             tabPageFormatRebase = new TabPage();
+            buttonFormatRebase = new Button();
             labelFormatRebase = new Label();
+            buttonFormatUpload = new Button();
             textBoxFormat = new TextBox();
             buttonFormatBrowse = new Button();
             labelFormat = new Label();
-            buttonFormatUpload = new Button();
-            buttonFormatRebase = new Button();
             tabControlMain.SuspendLayout();
             tabPageModel.SuspendLayout();
             groupBoxModel.SuspendLayout();
@@ -288,6 +293,9 @@
             // 
             // tabPageModelFindRef
             // 
+            tabPageModelFindRef.Controls.Add(buttonModelFindRefCollapse);
+            tabPageModelFindRef.Controls.Add(buttonModelFindRefExpand);
+            tabPageModelFindRef.Controls.Add(buttonModelFindRefReset);
             tabPageModelFindRef.Controls.Add(treeViewModelFindRef);
             tabPageModelFindRef.Controls.Add(buttonModelFindRef);
             tabPageModelFindRef.Controls.Add(textBoxModelFindRef);
@@ -300,12 +308,43 @@
             tabPageModelFindRef.Text = "Trova riferimenti";
             tabPageModelFindRef.UseVisualStyleBackColor = true;
             // 
+            // buttonModelFindRefCollapse
+            // 
+            buttonModelFindRefCollapse.Location = new Point(617, 259);
+            buttonModelFindRefCollapse.Name = "buttonModelFindRefCollapse";
+            buttonModelFindRefCollapse.Size = new Size(94, 29);
+            buttonModelFindRefCollapse.TabIndex = 7;
+            buttonModelFindRefCollapse.Text = "Collassa";
+            buttonModelFindRefCollapse.UseVisualStyleBackColor = true;
+            buttonModelFindRefCollapse.Click += buttonModelFindRefCollapse_Click;
+            // 
+            // buttonModelFindRefExpand
+            // 
+            buttonModelFindRefExpand.Location = new Point(617, 224);
+            buttonModelFindRefExpand.Name = "buttonModelFindRefExpand";
+            buttonModelFindRefExpand.Size = new Size(94, 29);
+            buttonModelFindRefExpand.TabIndex = 6;
+            buttonModelFindRefExpand.Text = "Espandi";
+            buttonModelFindRefExpand.UseVisualStyleBackColor = true;
+            buttonModelFindRefExpand.Click += buttonModelFindRefExpand_Click;
+            // 
+            // buttonModelFindRefReset
+            // 
+            buttonModelFindRefReset.Location = new Point(617, 189);
+            buttonModelFindRefReset.Name = "buttonModelFindRefReset";
+            buttonModelFindRefReset.Size = new Size(94, 29);
+            buttonModelFindRefReset.TabIndex = 5;
+            buttonModelFindRefReset.Text = "Reset";
+            buttonModelFindRefReset.UseVisualStyleBackColor = true;
+            buttonModelFindRefReset.Click += buttonModelFindRefReset_Click;
+            // 
             // treeViewModelFindRef
             // 
             treeViewModelFindRef.Location = new Point(6, 59);
             treeViewModelFindRef.Name = "treeViewModelFindRef";
-            treeViewModelFindRef.Size = new Size(705, 366);
+            treeViewModelFindRef.Size = new Size(605, 366);
             treeViewModelFindRef.TabIndex = 4;
+            treeViewModelFindRef.NodeMouseDoubleClick += treeViewModelFindRef_NodeMouseDoubleClick;
             // 
             // buttonModelFindRef
             // 
@@ -381,6 +420,8 @@
             // 
             // groupBoxMapInfo
             // 
+            groupBoxMapInfo.Controls.Add(textBoxMapModelMapping);
+            groupBoxMapInfo.Controls.Add(labelMapModelMapping);
             groupBoxMapInfo.Controls.Add(textBoxMapVers);
             groupBoxMapInfo.Controls.Add(labelMapPublicVers);
             groupBoxMapInfo.Controls.Add(labelMapProvider);
@@ -395,6 +436,23 @@
             groupBoxMapInfo.TabIndex = 5;
             groupBoxMapInfo.TabStop = false;
             groupBoxMapInfo.Text = "Info";
+            // 
+            // textBoxMapModelMapping
+            // 
+            textBoxMapModelMapping.Enabled = false;
+            textBoxMapModelMapping.Location = new Point(211, 118);
+            textBoxMapModelMapping.Name = "textBoxMapModelMapping";
+            textBoxMapModelMapping.Size = new Size(272, 27);
+            textBoxMapModelMapping.TabIndex = 9;
+            // 
+            // labelMapModelMapping
+            // 
+            labelMapModelMapping.AutoSize = true;
+            labelMapModelMapping.Location = new Point(211, 95);
+            labelMapModelMapping.Name = "labelMapModelMapping";
+            labelMapModelMapping.Size = new Size(161, 20);
+            labelMapModelMapping.TabIndex = 8;
+            labelMapModelMapping.Text = "Nome mapping model";
             // 
             // textBoxMapVers
             // 
@@ -750,6 +808,16 @@
             tabPageFormatRebase.Text = "Rebase";
             tabPageFormatRebase.UseVisualStyleBackColor = true;
             // 
+            // buttonFormatRebase
+            // 
+            buttonFormatRebase.Location = new Point(241, 171);
+            buttonFormatRebase.Name = "buttonFormatRebase";
+            buttonFormatRebase.Size = new Size(242, 58);
+            buttonFormatRebase.TabIndex = 7;
+            buttonFormatRebase.Text = "Rimuovi attributi XML";
+            buttonFormatRebase.UseVisualStyleBackColor = true;
+            buttonFormatRebase.Click += buttonFormatRebase_Click;
+            // 
             // labelFormatRebase
             // 
             labelFormatRebase.Location = new Point(6, 3);
@@ -757,6 +825,16 @@
             labelFormatRebase.Size = new Size(705, 165);
             labelFormatRebase.TabIndex = 2;
             labelFormatRebase.Text = resources.GetString("labelFormatRebase.Text");
+            // 
+            // buttonFormatUpload
+            // 
+            buttonFormatUpload.Location = new Point(649, 28);
+            buttonFormatUpload.Name = "buttonFormatUpload";
+            buttonFormatUpload.Size = new Size(94, 27);
+            buttonFormatUpload.TabIndex = 6;
+            buttonFormatUpload.Text = "Importa";
+            buttonFormatUpload.UseVisualStyleBackColor = true;
+            buttonFormatUpload.Click += buttonFormatUpload_Click;
             // 
             // textBoxFormat
             // 
@@ -783,26 +861,6 @@
             labelFormat.Size = new Size(430, 20);
             labelFormat.TabIndex = 2;
             labelFormat.Text = "Selezionare il file .xml di un file relativo ad un Format di un GER";
-            // 
-            // buttonFormatUpload
-            // 
-            buttonFormatUpload.Location = new Point(649, 28);
-            buttonFormatUpload.Name = "buttonFormatUpload";
-            buttonFormatUpload.Size = new Size(94, 27);
-            buttonFormatUpload.TabIndex = 6;
-            buttonFormatUpload.Text = "Importa";
-            buttonFormatUpload.UseVisualStyleBackColor = true;
-            buttonFormatUpload.Click += buttonFormatUpload_Click;
-            // 
-            // buttonFormatRebase
-            // 
-            buttonFormatRebase.Location = new Point(241, 171);
-            buttonFormatRebase.Name = "buttonFormatRebase";
-            buttonFormatRebase.Size = new Size(242, 58);
-            buttonFormatRebase.TabIndex = 7;
-            buttonFormatRebase.Text = "Rimuovi attributi XML";
-            buttonFormatRebase.UseVisualStyleBackColor = true;
-            buttonFormatRebase.Click += buttonFormatRebase_Click;
             // 
             // MainForm
             // 
@@ -916,5 +974,10 @@
         private TreeView treeViewFormatFindRefMap;
         private Button buttonFormatRebase;
         private Button buttonFormatUpload;
+        private TextBox textBoxMapModelMapping;
+        private Label labelMapModelMapping;
+        private Button buttonModelFindRefReset;
+        private Button buttonModelFindRefCollapse;
+        private Button buttonModelFindRefExpand;
     }
 }

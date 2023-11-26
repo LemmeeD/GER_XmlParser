@@ -42,12 +42,12 @@ namespace GER_XmlParser.entities
         // CONSTRUCTORS
         public XmlFormatFileWrapper(string filePath) : base(filePath)
         {
-            this._basicInfoNode1 = this.XmlParser.SelectSingleNode(BASIC_INFO_NODE1_XPATH);
-            this._basicInfoNode2 = this.XmlParser.SelectSingleNode(BASIC_INFO_NODE2_XPATH);
-            this._vendorNode = this.XmlParser.SelectSingleNode(VENDOR_NODE_XPATH);
+            this._basicInfoNode1 = this.ComputeFirstXPath1(BASIC_INFO_NODE1_XPATH);
+            this._basicInfoNode2 = this.ComputeFirstXPath1(BASIC_INFO_NODE2_XPATH);
+            this._vendorNode = this.ComputeFirstXPath1(VENDOR_NODE_XPATH);
 
-            this._datasourceNode = this.XmlParser.SelectSingleNode(FIRST_DATASOURCE_BASE_NODE_XPATH);
-            this._bindingNode = this.XmlParser.SelectSingleNode(FIRST_BINDING_BASE_NODE_XPATH);
+            this._datasourceNode = this.ComputeFirstXPath1(FIRST_DATASOURCE_BASE_NODE_XPATH);
+            this._bindingNode = this.ComputeFirstXPath1(FIRST_BINDING_BASE_NODE_XPATH);
             if ((this.BasicInfoNode1 == null) || (this.BasicInfoNode2 == null) || (this.VendorNode == null) || (this.DatasourceNode == null) || (this.BindingNode == null))
             {
                 throw new InvalidMappingException(string.Format("File individuato dal percorso '{0}' non valido come Format", filePath));
@@ -72,15 +72,15 @@ namespace GER_XmlParser.entities
             else this._vendor = temp.Value;
         }
 
-        public XmlNodeList FindReferences(string str)
+        public List<XmlNode> FindReferences(string str)
         {
             string xPath = string.Format(@".//ERModelItemValueDefinition[contains(@Name, '{0}')]", str);
-            return this.Compute(this.DatasourceNode, xPath);
+            return this.ComputeXPath2(this.DatasourceNode, xPath);
         }
 
         public int RemoveRevisionNumberAttributes()
         {
-            XmlNodeList nodes = this.Compute(@".//*[@RevisionNumber]");
+            List<XmlNode> nodes = this.ComputeXPath1(@".//*[@RevisionNumber]");
             foreach (XmlNode node in nodes)
             {
                 node.Attributes.RemoveNamedItem("RevisionNumber");
