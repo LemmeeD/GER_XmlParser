@@ -36,7 +36,28 @@
             textBoxModelFile = new TextBox();
             labelModelFile = new Label();
             groupBoxModel = new GroupBox();
+            groupBoxModelExtension = new GroupBox();
+            labelModelExtensionIdVersion = new Label();
+            groupBoxModelExtensionImport = new GroupBox();
+            textBoxModelImportedExtensionIdSerial = new TextBox();
+            labelModelImportedExtensionIdVersion = new Label();
+            labelModelExtensionImportIdentifier = new Label();
+            textBoxModelImportedExtensionIdVersion = new TextBox();
+            textBoxModelExtensionIdVersion = new TextBox();
+            buttonModelExtensionBrowser = new Button();
+            buttonModelExtensionReset = new Button();
+            textBoxModelExtensionFilepath = new TextBox();
+            label1 = new Label();
+            buttonModelExtensionUpload = new Button();
+            textBoxModelIsExtension = new TextBox();
+            labelModelIsExtension = new Label();
+            textBoxModelExtensionIdSerial = new TextBox();
+            labelModelExtensionIdSerial = new Label();
             groupBoxModelInfo = new GroupBox();
+            labelModelIdentifier = new Label();
+            labelModelExtensionLabelsNumber = new Label();
+            textBoxModelExtensionLabels = new TextBox();
+            textBoxModelIdentifier = new TextBox();
             textBoxModelPublicVersNum = new TextBox();
             labelModelPublicVersNum = new Label();
             labelModelProvider = new Label();
@@ -57,12 +78,25 @@
             tabPageMapping = new TabPage();
             comboBoxMapVers = new ComboBox();
             labelMapVersion = new Label();
-            groupBoxMap = new GroupBox();
-            groupBoxMapInfo = new GroupBox();
             textBoxMapModelMapping = new TextBox();
-            labelMapModelMapping = new Label();
+            groupBoxMap = new GroupBox();
+            groupBoxMapBaseModel = new GroupBox();
+            labeMapBaseModelSerial = new Label();
+            textBoxMapBaseModelVers = new TextBox();
+            labelMapBaseModelVers = new Label();
+            textBoxMapBaseModelSerial = new TextBox();
+            groupBoxMapExtension = new GroupBox();
+            textBoxMapExtensionSerial = new TextBox();
+            labelMapExtensionSerial = new Label();
+            textBoxMapExtension = new TextBox();
+            labelMapExtension = new Label();
+            labelMapExtensionVers = new Label();
+            textBoxMapExtensionVers = new TextBox();
+            groupBoxMapInfo = new GroupBox();
+            labelMapVers = new Label();
             textBoxMapVers = new TextBox();
-            labelMapPublicVers = new Label();
+            labelMapSerial = new Label();
+            textBoxMapSerial = new TextBox();
             labelMapProvider = new Label();
             textBoxMapProvider = new TextBox();
             textBoxMapDescr = new TextBox();
@@ -82,9 +116,36 @@
             labelMap = new Label();
             tabPageFormat = new TabPage();
             groupBoxFormat = new GroupBox();
+            groupBoxFormatExtension = new GroupBox();
+            groupBoxFormatExtensionImport = new GroupBox();
+            textBoxFormatExtensionImportSerial = new TextBox();
+            labelFormatExtensionImportVers = new Label();
+            labelFormatExtensionImportSerial = new Label();
+            textBoxFormatExtensionImportVers = new TextBox();
+            buttonFormatExtensionBrowse = new Button();
+            buttonFormatExtensionReset = new Button();
+            textBoxFormatExtensionBrowse = new TextBox();
+            labelFormatExtension = new Label();
+            buttonFormatExtensionImport = new Button();
+            groupBoxFormatBaseModel = new GroupBox();
+            labelFormatBaseModelSerial = new Label();
+            textBoxFormatBaseModelVers = new TextBox();
+            label3 = new Label();
+            textBoxFormatBaseModelSerial = new TextBox();
+            groupBoxFormatBaseFormat = new GroupBox();
+            textBoxFormatBaseFormatSerial = new TextBox();
+            labelFormatBaseFormatSerial = new Label();
+            textBoxFormatBaseFormatExtension = new TextBox();
+            labelFormatBaseFormatExtension = new Label();
+            labelFormatBaseFormatVers = new Label();
+            textBoxFormatBaseFormatVers = new TextBox();
             groupBoxFormatInfo = new GroupBox();
-            textBoxFormatVers = new TextBox();
+            labelMapLabels = new Label();
+            textBoxFormatLabels = new TextBox();
             labelFormatVers = new Label();
+            textBoxFormatVers = new TextBox();
+            textBoxFormatSerial = new TextBox();
+            labelFormatSerial = new Label();
             labelFormatProvider = new Label();
             textBoxFormatProvider = new TextBox();
             textBoxFormatDescr = new TextBox();
@@ -105,19 +166,28 @@
             textBoxFormat = new TextBox();
             buttonFormatBrowse = new Button();
             labelFormat = new Label();
+            tabPage2 = new TabPage();
             tabControlMain.SuspendLayout();
             tabPageModel.SuspendLayout();
             groupBoxModel.SuspendLayout();
+            groupBoxModelExtension.SuspendLayout();
+            groupBoxModelExtensionImport.SuspendLayout();
             groupBoxModelInfo.SuspendLayout();
             tabControlModel.SuspendLayout();
             tabPageModelFindRef.SuspendLayout();
             tabPageMapping.SuspendLayout();
             groupBoxMap.SuspendLayout();
+            groupBoxMapBaseModel.SuspendLayout();
+            groupBoxMapExtension.SuspendLayout();
             groupBoxMapInfo.SuspendLayout();
             tabControlMap.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPageFormat.SuspendLayout();
             groupBoxFormat.SuspendLayout();
+            groupBoxFormatExtension.SuspendLayout();
+            groupBoxFormatExtensionImport.SuspendLayout();
+            groupBoxFormatBaseModel.SuspendLayout();
+            groupBoxFormatBaseFormat.SuspendLayout();
             groupBoxFormatInfo.SuspendLayout();
             tabControlFormat.SuspendLayout();
             tabPageFormatFindRef.SuspendLayout();
@@ -132,7 +202,7 @@
             tabControlMain.Location = new Point(12, 12);
             tabControlMain.Name = "tabControlMain";
             tabControlMain.SelectedIndex = 0;
-            tabControlMain.Size = new Size(757, 772);
+            tabControlMain.Size = new Size(1248, 772);
             tabControlMain.TabIndex = 0;
             // 
             // tabPageModel
@@ -145,14 +215,14 @@
             tabPageModel.Location = new Point(4, 29);
             tabPageModel.Name = "tabPageModel";
             tabPageModel.Padding = new Padding(3);
-            tabPageModel.Size = new Size(749, 739);
+            tabPageModel.Size = new Size(1240, 739);
             tabPageModel.TabIndex = 0;
             tabPageModel.Text = "Model";
             tabPageModel.UseVisualStyleBackColor = true;
             // 
             // buttonModelUpload
             // 
-            buttonModelUpload.Location = new Point(649, 26);
+            buttonModelUpload.Location = new Point(1005, 26);
             buttonModelUpload.Name = "buttonModelUpload";
             buttonModelUpload.Size = new Size(94, 29);
             buttonModelUpload.TabIndex = 3;
@@ -174,7 +244,7 @@
             // 
             textBoxModelFile.Location = new Point(106, 26);
             textBoxModelFile.Name = "textBoxModelFile";
-            textBoxModelFile.Size = new Size(537, 27);
+            textBoxModelFile.Size = new Size(893, 27);
             textBoxModelFile.TabIndex = 1;
             // 
             // labelModelFile
@@ -188,17 +258,187 @@
             // 
             // groupBoxModel
             // 
+            groupBoxModel.Controls.Add(groupBoxModelExtension);
             groupBoxModel.Controls.Add(groupBoxModelInfo);
             groupBoxModel.Controls.Add(tabControlModel);
             groupBoxModel.Location = new Point(6, 59);
             groupBoxModel.Name = "groupBoxModel";
-            groupBoxModel.Size = new Size(737, 674);
+            groupBoxModel.Size = new Size(1228, 674);
             groupBoxModel.TabIndex = 5;
             groupBoxModel.TabStop = false;
             groupBoxModel.Text = "Model";
             // 
+            // groupBoxModelExtension
+            // 
+            groupBoxModelExtension.Controls.Add(labelModelExtensionIdVersion);
+            groupBoxModelExtension.Controls.Add(groupBoxModelExtensionImport);
+            groupBoxModelExtension.Controls.Add(textBoxModelExtensionIdVersion);
+            groupBoxModelExtension.Controls.Add(buttonModelExtensionBrowser);
+            groupBoxModelExtension.Controls.Add(buttonModelExtensionReset);
+            groupBoxModelExtension.Controls.Add(textBoxModelExtensionFilepath);
+            groupBoxModelExtension.Controls.Add(label1);
+            groupBoxModelExtension.Controls.Add(buttonModelExtensionUpload);
+            groupBoxModelExtension.Controls.Add(textBoxModelIsExtension);
+            groupBoxModelExtension.Controls.Add(labelModelIsExtension);
+            groupBoxModelExtension.Controls.Add(textBoxModelExtensionIdSerial);
+            groupBoxModelExtension.Controls.Add(labelModelExtensionIdSerial);
+            groupBoxModelExtension.Location = new Point(463, 26);
+            groupBoxModelExtension.Name = "groupBoxModelExtension";
+            groupBoxModelExtension.Size = new Size(759, 224);
+            groupBoxModelExtension.TabIndex = 6;
+            groupBoxModelExtension.TabStop = false;
+            groupBoxModelExtension.Text = "Estensione";
+            // 
+            // labelModelExtensionIdVersion
+            // 
+            labelModelExtensionIdVersion.Location = new Point(364, 86);
+            labelModelExtensionIdVersion.Name = "labelModelExtensionIdVersion";
+            labelModelExtensionIdVersion.Size = new Size(132, 27);
+            labelModelExtensionIdVersion.TabIndex = 15;
+            labelModelExtensionIdVersion.Text = "GER base versione";
+            labelModelExtensionIdVersion.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // groupBoxModelExtensionImport
+            // 
+            groupBoxModelExtensionImport.Controls.Add(textBoxModelImportedExtensionIdSerial);
+            groupBoxModelExtensionImport.Controls.Add(labelModelImportedExtensionIdVersion);
+            groupBoxModelExtensionImport.Controls.Add(labelModelExtensionImportIdentifier);
+            groupBoxModelExtensionImport.Controls.Add(textBoxModelImportedExtensionIdVersion);
+            groupBoxModelExtensionImport.Location = new Point(364, 128);
+            groupBoxModelExtensionImport.Name = "groupBoxModelExtensionImport";
+            groupBoxModelExtensionImport.Size = new Size(382, 90);
+            groupBoxModelExtensionImport.TabIndex = 26;
+            groupBoxModelExtensionImport.TabStop = false;
+            groupBoxModelExtensionImport.Text = "GER base importato";
+            // 
+            // textBoxModelImportedExtensionIdSerial
+            // 
+            textBoxModelImportedExtensionIdSerial.Enabled = false;
+            textBoxModelImportedExtensionIdSerial.Location = new Point(68, 23);
+            textBoxModelImportedExtensionIdSerial.Name = "textBoxModelImportedExtensionIdSerial";
+            textBoxModelImportedExtensionIdSerial.Size = new Size(308, 27);
+            textBoxModelImportedExtensionIdSerial.TabIndex = 21;
+            // 
+            // labelModelImportedExtensionIdVersion
+            // 
+            labelModelImportedExtensionIdVersion.Location = new Point(9, 56);
+            labelModelImportedExtensionIdVersion.Name = "labelModelImportedExtensionIdVersion";
+            labelModelImportedExtensionIdVersion.Size = new Size(68, 27);
+            labelModelImportedExtensionIdVersion.TabIndex = 25;
+            labelModelImportedExtensionIdVersion.Text = "Versione";
+            labelModelImportedExtensionIdVersion.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelModelExtensionImportIdentifier
+            // 
+            labelModelExtensionImportIdentifier.Location = new Point(6, 23);
+            labelModelExtensionImportIdentifier.Name = "labelModelExtensionImportIdentifier";
+            labelModelExtensionImportIdentifier.Size = new Size(56, 27);
+            labelModelExtensionImportIdentifier.TabIndex = 23;
+            labelModelExtensionImportIdentifier.Text = "Seriale";
+            labelModelExtensionImportIdentifier.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBoxModelImportedExtensionIdVersion
+            // 
+            textBoxModelImportedExtensionIdVersion.Enabled = false;
+            textBoxModelImportedExtensionIdVersion.Location = new Point(80, 56);
+            textBoxModelImportedExtensionIdVersion.Name = "textBoxModelImportedExtensionIdVersion";
+            textBoxModelImportedExtensionIdVersion.Size = new Size(296, 27);
+            textBoxModelImportedExtensionIdVersion.TabIndex = 24;
+            // 
+            // textBoxModelExtensionIdVersion
+            // 
+            textBoxModelExtensionIdVersion.Enabled = false;
+            textBoxModelExtensionIdVersion.Location = new Point(502, 86);
+            textBoxModelExtensionIdVersion.Name = "textBoxModelExtensionIdVersion";
+            textBoxModelExtensionIdVersion.Size = new Size(244, 27);
+            textBoxModelExtensionIdVersion.TabIndex = 14;
+            // 
+            // buttonModelExtensionBrowser
+            // 
+            buttonModelExtensionBrowser.Location = new Point(299, 128);
+            buttonModelExtensionBrowser.Name = "buttonModelExtensionBrowser";
+            buttonModelExtensionBrowser.Size = new Size(59, 29);
+            buttonModelExtensionBrowser.TabIndex = 20;
+            buttonModelExtensionBrowser.Text = "Cerca";
+            buttonModelExtensionBrowser.UseVisualStyleBackColor = true;
+            buttonModelExtensionBrowser.Click += buttonModelExtensionBrowser_Click;
+            // 
+            // buttonModelExtensionReset
+            // 
+            buttonModelExtensionReset.Location = new Point(199, 163);
+            buttonModelExtensionReset.Name = "buttonModelExtensionReset";
+            buttonModelExtensionReset.Size = new Size(94, 29);
+            buttonModelExtensionReset.TabIndex = 19;
+            buttonModelExtensionReset.Text = "Reset";
+            buttonModelExtensionReset.UseVisualStyleBackColor = true;
+            buttonModelExtensionReset.Click += buttonModelExtensionReset_Click;
+            // 
+            // textBoxModelExtensionFilepath
+            // 
+            textBoxModelExtensionFilepath.Enabled = false;
+            textBoxModelExtensionFilepath.Location = new Point(6, 130);
+            textBoxModelExtensionFilepath.Name = "textBoxModelExtensionFilepath";
+            textBoxModelExtensionFilepath.Size = new Size(287, 27);
+            textBoxModelExtensionFilepath.TabIndex = 16;
+            // 
+            // label1
+            // 
+            label1.Location = new Point(6, 23);
+            label1.Name = "label1";
+            label1.Size = new Size(352, 102);
+            label1.TabIndex = 15;
+            label1.Text = "Se il GER è stato sviluppato in estensione è caldamente consigliabile importare anche il GER base per poter usufruire delle label, così da avere un risultato più vicino alla realtà possibile:";
+            // 
+            // buttonModelExtensionUpload
+            // 
+            buttonModelExtensionUpload.Location = new Point(70, 163);
+            buttonModelExtensionUpload.Name = "buttonModelExtensionUpload";
+            buttonModelExtensionUpload.Size = new Size(94, 29);
+            buttonModelExtensionUpload.TabIndex = 14;
+            buttonModelExtensionUpload.Text = "Importa";
+            buttonModelExtensionUpload.UseVisualStyleBackColor = true;
+            buttonModelExtensionUpload.Click += buttonModelExtensionUpload_Click;
+            // 
+            // textBoxModelIsExtension
+            // 
+            textBoxModelIsExtension.Enabled = false;
+            textBoxModelIsExtension.Location = new Point(453, 20);
+            textBoxModelIsExtension.Name = "textBoxModelIsExtension";
+            textBoxModelIsExtension.Size = new Size(293, 27);
+            textBoxModelIsExtension.TabIndex = 10;
+            // 
+            // labelModelIsExtension
+            // 
+            labelModelIsExtension.Location = new Point(364, 20);
+            labelModelIsExtension.Name = "labelModelIsExtension";
+            labelModelIsExtension.Size = new Size(83, 27);
+            labelModelIsExtension.TabIndex = 11;
+            labelModelIsExtension.Text = "Estensione";
+            labelModelIsExtension.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBoxModelExtensionIdSerial
+            // 
+            textBoxModelExtensionIdSerial.Enabled = false;
+            textBoxModelExtensionIdSerial.Location = new Point(488, 53);
+            textBoxModelExtensionIdSerial.Name = "textBoxModelExtensionIdSerial";
+            textBoxModelExtensionIdSerial.Size = new Size(258, 27);
+            textBoxModelExtensionIdSerial.TabIndex = 12;
+            // 
+            // labelModelExtensionIdSerial
+            // 
+            labelModelExtensionIdSerial.Location = new Point(364, 53);
+            labelModelExtensionIdSerial.Name = "labelModelExtensionIdSerial";
+            labelModelExtensionIdSerial.Size = new Size(118, 27);
+            labelModelExtensionIdSerial.TabIndex = 13;
+            labelModelExtensionIdSerial.Text = "GER base seriale";
+            labelModelExtensionIdSerial.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // groupBoxModelInfo
             // 
+            groupBoxModelInfo.Controls.Add(labelModelIdentifier);
+            groupBoxModelInfo.Controls.Add(labelModelExtensionLabelsNumber);
+            groupBoxModelInfo.Controls.Add(textBoxModelExtensionLabels);
+            groupBoxModelInfo.Controls.Add(textBoxModelIdentifier);
             groupBoxModelInfo.Controls.Add(textBoxModelPublicVersNum);
             groupBoxModelInfo.Controls.Add(labelModelPublicVersNum);
             groupBoxModelInfo.Controls.Add(labelModelProvider);
@@ -209,86 +449,120 @@
             groupBoxModelInfo.Controls.Add(labelModelName);
             groupBoxModelInfo.Location = new Point(10, 26);
             groupBoxModelInfo.Name = "groupBoxModelInfo";
-            groupBoxModelInfo.Size = new Size(717, 172);
+            groupBoxModelInfo.Size = new Size(447, 224);
             groupBoxModelInfo.TabIndex = 5;
             groupBoxModelInfo.TabStop = false;
             groupBoxModelInfo.Text = "Info";
             // 
+            // labelModelIdentifier
+            // 
+            labelModelIdentifier.Location = new Point(6, 125);
+            labelModelIdentifier.Name = "labelModelIdentifier";
+            labelModelIdentifier.Size = new Size(59, 27);
+            labelModelIdentifier.TabIndex = 9;
+            labelModelIdentifier.Text = "Seriale";
+            labelModelIdentifier.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelModelExtensionLabelsNumber
+            // 
+            labelModelExtensionLabelsNumber.Location = new Point(6, 191);
+            labelModelExtensionLabelsNumber.Name = "labelModelExtensionLabelsNumber";
+            labelModelExtensionLabelsNumber.Size = new Size(106, 27);
+            labelModelExtensionLabelsNumber.TabIndex = 17;
+            labelModelExtensionLabelsNumber.Text = "Numero labels";
+            labelModelExtensionLabelsNumber.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBoxModelExtensionLabels
+            // 
+            textBoxModelExtensionLabels.Enabled = false;
+            textBoxModelExtensionLabels.Location = new Point(118, 191);
+            textBoxModelExtensionLabels.Name = "textBoxModelExtensionLabels";
+            textBoxModelExtensionLabels.Size = new Size(317, 27);
+            textBoxModelExtensionLabels.TabIndex = 18;
+            // 
+            // textBoxModelIdentifier
+            // 
+            textBoxModelIdentifier.Enabled = false;
+            textBoxModelIdentifier.Location = new Point(71, 125);
+            textBoxModelIdentifier.Name = "textBoxModelIdentifier";
+            textBoxModelIdentifier.Size = new Size(364, 27);
+            textBoxModelIdentifier.TabIndex = 8;
+            // 
             // textBoxModelPublicVersNum
             // 
             textBoxModelPublicVersNum.Enabled = false;
-            textBoxModelPublicVersNum.Location = new Point(6, 118);
+            textBoxModelPublicVersNum.Location = new Point(77, 158);
             textBoxModelPublicVersNum.Name = "textBoxModelPublicVersNum";
-            textBoxModelPublicVersNum.Size = new Size(199, 27);
+            textBoxModelPublicVersNum.Size = new Size(358, 27);
             textBoxModelPublicVersNum.TabIndex = 7;
             // 
             // labelModelPublicVersNum
             // 
-            labelModelPublicVersNum.AutoSize = true;
-            labelModelPublicVersNum.Location = new Point(6, 95);
+            labelModelPublicVersNum.Location = new Point(6, 158);
             labelModelPublicVersNum.Name = "labelModelPublicVersNum";
-            labelModelPublicVersNum.Size = new Size(65, 20);
+            labelModelPublicVersNum.Size = new Size(65, 27);
             labelModelPublicVersNum.TabIndex = 6;
             labelModelPublicVersNum.Text = "Versione";
+            labelModelPublicVersNum.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // labelModelProvider
             // 
-            labelModelProvider.AutoSize = true;
-            labelModelProvider.Location = new Point(489, 23);
+            labelModelProvider.Location = new Point(6, 92);
             labelModelProvider.Name = "labelModelProvider";
-            labelModelProvider.Size = new Size(64, 20);
+            labelModelProvider.Size = new Size(64, 27);
             labelModelProvider.TabIndex = 5;
             labelModelProvider.Text = "Provider";
+            labelModelProvider.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // textBoxModelVendor
             // 
             textBoxModelVendor.Enabled = false;
-            textBoxModelVendor.Location = new Point(489, 46);
+            textBoxModelVendor.Location = new Point(76, 92);
             textBoxModelVendor.Name = "textBoxModelVendor";
-            textBoxModelVendor.Size = new Size(222, 27);
+            textBoxModelVendor.Size = new Size(359, 27);
             textBoxModelVendor.TabIndex = 4;
             // 
             // textBoxModelDescr
             // 
             textBoxModelDescr.Enabled = false;
-            textBoxModelDescr.Location = new Point(211, 46);
+            textBoxModelDescr.Location = new Point(98, 59);
             textBoxModelDescr.Name = "textBoxModelDescr";
-            textBoxModelDescr.Size = new Size(272, 27);
+            textBoxModelDescr.Size = new Size(337, 27);
             textBoxModelDescr.TabIndex = 3;
             // 
             // labelModelDescr
             // 
-            labelModelDescr.AutoSize = true;
-            labelModelDescr.Location = new Point(211, 23);
+            labelModelDescr.Location = new Point(6, 59);
             labelModelDescr.Name = "labelModelDescr";
-            labelModelDescr.Size = new Size(86, 20);
+            labelModelDescr.Size = new Size(86, 27);
             labelModelDescr.TabIndex = 2;
             labelModelDescr.Text = "Descrizione";
+            labelModelDescr.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // textBoxModelName
             // 
             textBoxModelName.Enabled = false;
-            textBoxModelName.Location = new Point(6, 46);
+            textBoxModelName.Location = new Point(62, 26);
             textBoxModelName.Name = "textBoxModelName";
-            textBoxModelName.Size = new Size(199, 27);
+            textBoxModelName.Size = new Size(373, 27);
             textBoxModelName.TabIndex = 1;
             // 
             // labelModelName
             // 
-            labelModelName.AutoSize = true;
             labelModelName.Location = new Point(6, 23);
             labelModelName.Name = "labelModelName";
-            labelModelName.Size = new Size(50, 20);
+            labelModelName.Size = new Size(50, 27);
             labelModelName.TabIndex = 0;
             labelModelName.Text = "Nome";
+            labelModelName.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // tabControlModel
             // 
             tabControlModel.Controls.Add(tabPageModelFindRef);
-            tabControlModel.Location = new Point(6, 204);
+            tabControlModel.Location = new Point(268, 275);
             tabControlModel.Name = "tabControlModel";
             tabControlModel.SelectedIndex = 0;
-            tabControlModel.Size = new Size(725, 464);
+            tabControlModel.Size = new Size(725, 393);
             tabControlModel.TabIndex = 4;
             // 
             // tabPageModelFindRef
@@ -303,7 +577,7 @@
             tabPageModelFindRef.Location = new Point(4, 29);
             tabPageModelFindRef.Name = "tabPageModelFindRef";
             tabPageModelFindRef.Padding = new Padding(3);
-            tabPageModelFindRef.Size = new Size(717, 431);
+            tabPageModelFindRef.Size = new Size(717, 360);
             tabPageModelFindRef.TabIndex = 0;
             tabPageModelFindRef.Text = "Trova riferimenti";
             tabPageModelFindRef.UseVisualStyleBackColor = true;
@@ -342,7 +616,7 @@
             // 
             treeViewModelFindRef.Location = new Point(6, 59);
             treeViewModelFindRef.Name = "treeViewModelFindRef";
-            treeViewModelFindRef.Size = new Size(605, 366);
+            treeViewModelFindRef.Size = new Size(605, 295);
             treeViewModelFindRef.TabIndex = 4;
             treeViewModelFindRef.NodeMouseDoubleClick += treeViewModelFindRef_NodeMouseDoubleClick;
             // 
@@ -376,6 +650,7 @@
             // 
             tabPageMapping.Controls.Add(comboBoxMapVers);
             tabPageMapping.Controls.Add(labelMapVersion);
+            tabPageMapping.Controls.Add(textBoxMapModelMapping);
             tabPageMapping.Controls.Add(groupBoxMap);
             tabPageMapping.Controls.Add(buttonMapUpload);
             tabPageMapping.Controls.Add(textBoxMapFile);
@@ -384,7 +659,7 @@
             tabPageMapping.Location = new Point(4, 29);
             tabPageMapping.Name = "tabPageMapping";
             tabPageMapping.Padding = new Padding(3);
-            tabPageMapping.Size = new Size(749, 739);
+            tabPageMapping.Size = new Size(1240, 739);
             tabPageMapping.TabIndex = 1;
             tabPageMapping.Text = "Mapping";
             tabPageMapping.UseVisualStyleBackColor = true;
@@ -392,38 +667,161 @@
             // comboBoxMapVers
             // 
             comboBoxMapVers.FormattingEnabled = true;
-            comboBoxMapVers.Location = new Point(158, 64);
+            comboBoxMapVers.Location = new Point(204, 64);
             comboBoxMapVers.Name = "comboBoxMapVers";
-            comboBoxMapVers.Size = new Size(585, 28);
+            comboBoxMapVers.Size = new Size(481, 28);
             comboBoxMapVers.TabIndex = 8;
             comboBoxMapVers.SelectedIndexChanged += comboBoxMapVers_SelectedIndexChanged;
             // 
             // labelMapVersion
             // 
             labelMapVersion.AutoSize = true;
-            labelMapVersion.Location = new Point(3, 67);
+            labelMapVersion.Location = new Point(6, 67);
             labelMapVersion.Name = "labelMapVersion";
             labelMapVersion.Size = new Size(120, 20);
             labelMapVersion.TabIndex = 7;
             labelMapVersion.Text = "Mapping version";
             // 
+            // textBoxMapModelMapping
+            // 
+            textBoxMapModelMapping.Enabled = false;
+            textBoxMapModelMapping.Location = new Point(691, 65);
+            textBoxMapModelMapping.Name = "textBoxMapModelMapping";
+            textBoxMapModelMapping.Size = new Size(308, 27);
+            textBoxMapModelMapping.TabIndex = 9;
+            // 
             // groupBoxMap
             // 
+            groupBoxMap.Controls.Add(groupBoxMapBaseModel);
+            groupBoxMap.Controls.Add(groupBoxMapExtension);
             groupBoxMap.Controls.Add(groupBoxMapInfo);
             groupBoxMap.Controls.Add(tabControlMap);
             groupBoxMap.Location = new Point(6, 98);
             groupBoxMap.Name = "groupBoxMap";
-            groupBoxMap.Size = new Size(737, 635);
+            groupBoxMap.Size = new Size(1093, 635);
             groupBoxMap.TabIndex = 6;
             groupBoxMap.TabStop = false;
             groupBoxMap.Text = "Mapping";
             // 
+            // groupBoxMapBaseModel
+            // 
+            groupBoxMapBaseModel.Controls.Add(labeMapBaseModelSerial);
+            groupBoxMapBaseModel.Controls.Add(textBoxMapBaseModelVers);
+            groupBoxMapBaseModel.Controls.Add(labelMapBaseModelVers);
+            groupBoxMapBaseModel.Controls.Add(textBoxMapBaseModelSerial);
+            groupBoxMapBaseModel.Location = new Point(409, 26);
+            groupBoxMapBaseModel.Name = "groupBoxMapBaseModel";
+            groupBoxMapBaseModel.Size = new Size(346, 190);
+            groupBoxMapBaseModel.TabIndex = 22;
+            groupBoxMapBaseModel.TabStop = false;
+            groupBoxMapBaseModel.Text = "Model referenziato";
+            // 
+            // labeMapBaseModelSerial
+            // 
+            labeMapBaseModelSerial.Location = new Point(6, 26);
+            labeMapBaseModelSerial.Name = "labeMapBaseModelSerial";
+            labeMapBaseModelSerial.Size = new Size(61, 27);
+            labeMapBaseModelSerial.TabIndex = 19;
+            labeMapBaseModelSerial.Text = "Seriale";
+            labeMapBaseModelSerial.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBoxMapBaseModelVers
+            // 
+            textBoxMapBaseModelVers.Enabled = false;
+            textBoxMapBaseModelVers.Location = new Point(83, 59);
+            textBoxMapBaseModelVers.Name = "textBoxMapBaseModelVers";
+            textBoxMapBaseModelVers.Size = new Size(257, 27);
+            textBoxMapBaseModelVers.TabIndex = 20;
+            // 
+            // labelMapBaseModelVers
+            // 
+            labelMapBaseModelVers.Location = new Point(6, 59);
+            labelMapBaseModelVers.Name = "labelMapBaseModelVers";
+            labelMapBaseModelVers.Size = new Size(71, 27);
+            labelMapBaseModelVers.TabIndex = 21;
+            labelMapBaseModelVers.Text = "Versione";
+            labelMapBaseModelVers.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBoxMapBaseModelSerial
+            // 
+            textBoxMapBaseModelSerial.Enabled = false;
+            textBoxMapBaseModelSerial.Location = new Point(73, 26);
+            textBoxMapBaseModelSerial.Name = "textBoxMapBaseModelSerial";
+            textBoxMapBaseModelSerial.Size = new Size(267, 27);
+            textBoxMapBaseModelSerial.TabIndex = 18;
+            // 
+            // groupBoxMapExtension
+            // 
+            groupBoxMapExtension.Controls.Add(textBoxMapExtensionSerial);
+            groupBoxMapExtension.Controls.Add(labelMapExtensionSerial);
+            groupBoxMapExtension.Controls.Add(textBoxMapExtension);
+            groupBoxMapExtension.Controls.Add(labelMapExtension);
+            groupBoxMapExtension.Controls.Add(labelMapExtensionVers);
+            groupBoxMapExtension.Controls.Add(textBoxMapExtensionVers);
+            groupBoxMapExtension.Location = new Point(764, 26);
+            groupBoxMapExtension.Name = "groupBoxMapExtension";
+            groupBoxMapExtension.Size = new Size(323, 190);
+            groupBoxMapExtension.TabIndex = 22;
+            groupBoxMapExtension.TabStop = false;
+            groupBoxMapExtension.Text = "Mapping estensione";
+            // 
+            // textBoxMapExtensionSerial
+            // 
+            textBoxMapExtensionSerial.Enabled = false;
+            textBoxMapExtensionSerial.Location = new Point(68, 59);
+            textBoxMapExtensionSerial.Name = "textBoxMapExtensionSerial";
+            textBoxMapExtensionSerial.Size = new Size(251, 27);
+            textBoxMapExtensionSerial.TabIndex = 14;
+            // 
+            // labelMapExtensionSerial
+            // 
+            labelMapExtensionSerial.Location = new Point(6, 59);
+            labelMapExtensionSerial.Name = "labelMapExtensionSerial";
+            labelMapExtensionSerial.Size = new Size(54, 27);
+            labelMapExtensionSerial.TabIndex = 15;
+            labelMapExtensionSerial.Text = "Seriale";
+            labelMapExtensionSerial.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBoxMapExtension
+            // 
+            textBoxMapExtension.Enabled = false;
+            textBoxMapExtension.Location = new Point(113, 26);
+            textBoxMapExtension.Name = "textBoxMapExtension";
+            textBoxMapExtension.Size = new Size(204, 27);
+            textBoxMapExtension.TabIndex = 12;
+            // 
+            // labelMapExtension
+            // 
+            labelMapExtension.Location = new Point(6, 26);
+            labelMapExtension.Name = "labelMapExtension";
+            labelMapExtension.Size = new Size(101, 27);
+            labelMapExtension.TabIndex = 13;
+            labelMapExtension.Text = "In estensione";
+            labelMapExtension.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelMapExtensionVers
+            // 
+            labelMapExtensionVers.Location = new Point(6, 92);
+            labelMapExtensionVers.Name = "labelMapExtensionVers";
+            labelMapExtensionVers.Size = new Size(65, 27);
+            labelMapExtensionVers.TabIndex = 6;
+            labelMapExtensionVers.Text = "Versione";
+            labelMapExtensionVers.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBoxMapExtensionVers
+            // 
+            textBoxMapExtensionVers.Enabled = false;
+            textBoxMapExtensionVers.Location = new Point(77, 92);
+            textBoxMapExtensionVers.Name = "textBoxMapExtensionVers";
+            textBoxMapExtensionVers.Size = new Size(240, 27);
+            textBoxMapExtensionVers.TabIndex = 7;
+            // 
             // groupBoxMapInfo
             // 
-            groupBoxMapInfo.Controls.Add(textBoxMapModelMapping);
-            groupBoxMapInfo.Controls.Add(labelMapModelMapping);
+            groupBoxMapInfo.Controls.Add(labelMapVers);
             groupBoxMapInfo.Controls.Add(textBoxMapVers);
-            groupBoxMapInfo.Controls.Add(labelMapPublicVers);
+            groupBoxMapInfo.Controls.Add(labelMapSerial);
+            groupBoxMapInfo.Controls.Add(textBoxMapSerial);
             groupBoxMapInfo.Controls.Add(labelMapProvider);
             groupBoxMapInfo.Controls.Add(textBoxMapProvider);
             groupBoxMapInfo.Controls.Add(textBoxMapDescr);
@@ -432,103 +830,104 @@
             groupBoxMapInfo.Controls.Add(labelMapName);
             groupBoxMapInfo.Location = new Point(6, 26);
             groupBoxMapInfo.Name = "groupBoxMapInfo";
-            groupBoxMapInfo.Size = new Size(717, 172);
+            groupBoxMapInfo.Size = new Size(397, 190);
             groupBoxMapInfo.TabIndex = 5;
             groupBoxMapInfo.TabStop = false;
             groupBoxMapInfo.Text = "Info";
             // 
-            // textBoxMapModelMapping
+            // labelMapVers
             // 
-            textBoxMapModelMapping.Enabled = false;
-            textBoxMapModelMapping.Location = new Point(211, 118);
-            textBoxMapModelMapping.Name = "textBoxMapModelMapping";
-            textBoxMapModelMapping.Size = new Size(272, 27);
-            textBoxMapModelMapping.TabIndex = 9;
-            // 
-            // labelMapModelMapping
-            // 
-            labelMapModelMapping.AutoSize = true;
-            labelMapModelMapping.Location = new Point(211, 95);
-            labelMapModelMapping.Name = "labelMapModelMapping";
-            labelMapModelMapping.Size = new Size(161, 20);
-            labelMapModelMapping.TabIndex = 8;
-            labelMapModelMapping.Text = "Nome mapping model";
+            labelMapVers.Location = new Point(7, 152);
+            labelMapVers.Name = "labelMapVers";
+            labelMapVers.Size = new Size(81, 27);
+            labelMapVers.TabIndex = 17;
+            labelMapVers.Text = "Versione ER base";
+            labelMapVers.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // textBoxMapVers
             // 
             textBoxMapVers.Enabled = false;
-            textBoxMapVers.Location = new Point(6, 118);
+            textBoxMapVers.Location = new Point(94, 152);
             textBoxMapVers.Name = "textBoxMapVers";
-            textBoxMapVers.Size = new Size(199, 27);
-            textBoxMapVers.TabIndex = 7;
+            textBoxMapVers.Size = new Size(292, 27);
+            textBoxMapVers.TabIndex = 16;
             // 
-            // labelMapPublicVers
+            // labelMapSerial
             // 
-            labelMapPublicVers.AutoSize = true;
-            labelMapPublicVers.Location = new Point(6, 95);
-            labelMapPublicVers.Name = "labelMapPublicVers";
-            labelMapPublicVers.Size = new Size(65, 20);
-            labelMapPublicVers.TabIndex = 6;
-            labelMapPublicVers.Text = "Versione";
+            labelMapSerial.Location = new Point(7, 119);
+            labelMapSerial.Name = "labelMapSerial";
+            labelMapSerial.Size = new Size(65, 27);
+            labelMapSerial.TabIndex = 11;
+            labelMapSerial.Text = "Seriale GER";
+            labelMapSerial.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBoxMapSerial
+            // 
+            textBoxMapSerial.Enabled = false;
+            textBoxMapSerial.Location = new Point(78, 119);
+            textBoxMapSerial.Name = "textBoxMapSerial";
+            textBoxMapSerial.Size = new Size(308, 27);
+            textBoxMapSerial.TabIndex = 10;
             // 
             // labelMapProvider
             // 
-            labelMapProvider.AutoSize = true;
-            labelMapProvider.Location = new Point(489, 23);
+            labelMapProvider.Location = new Point(6, 86);
             labelMapProvider.Name = "labelMapProvider";
-            labelMapProvider.Size = new Size(64, 20);
+            labelMapProvider.Size = new Size(64, 27);
             labelMapProvider.TabIndex = 5;
             labelMapProvider.Text = "Provider";
+            labelMapProvider.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // textBoxMapProvider
             // 
             textBoxMapProvider.Enabled = false;
-            textBoxMapProvider.Location = new Point(489, 46);
+            textBoxMapProvider.Location = new Point(77, 86);
             textBoxMapProvider.Name = "textBoxMapProvider";
-            textBoxMapProvider.Size = new Size(222, 27);
+            textBoxMapProvider.Size = new Size(309, 27);
             textBoxMapProvider.TabIndex = 4;
             // 
             // textBoxMapDescr
             // 
             textBoxMapDescr.Enabled = false;
-            textBoxMapDescr.Location = new Point(211, 46);
+            textBoxMapDescr.Location = new Point(94, 53);
             textBoxMapDescr.Name = "textBoxMapDescr";
-            textBoxMapDescr.Size = new Size(272, 27);
+            textBoxMapDescr.Size = new Size(292, 27);
             textBoxMapDescr.TabIndex = 3;
             // 
             // labelMapDescr
             // 
-            labelMapDescr.AutoSize = true;
-            labelMapDescr.Location = new Point(211, 23);
+            labelMapDescr.Location = new Point(6, 53);
             labelMapDescr.Name = "labelMapDescr";
-            labelMapDescr.Size = new Size(86, 20);
+            labelMapDescr.Size = new Size(86, 27);
             labelMapDescr.TabIndex = 2;
             labelMapDescr.Text = "Descrizione";
+            labelMapDescr.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // textBoxMapName
             // 
             textBoxMapName.Enabled = false;
-            textBoxMapName.Location = new Point(6, 46);
+            textBoxMapName.Location = new Point(62, 20);
             textBoxMapName.Name = "textBoxMapName";
-            textBoxMapName.Size = new Size(199, 27);
+            textBoxMapName.Size = new Size(324, 27);
             textBoxMapName.TabIndex = 1;
             // 
             // labelMapName
             // 
-            labelMapName.AutoSize = true;
-            labelMapName.Location = new Point(6, 23);
+            labelMapName.Location = new Point(6, 20);
             labelMapName.Name = "labelMapName";
-            labelMapName.Size = new Size(50, 20);
+            labelMapName.Size = new Size(50, 27);
             labelMapName.TabIndex = 0;
             labelMapName.Text = "Nome";
+            labelMapName.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // tabControlMap
             // 
             tabControlMap.Controls.Add(tabPage1);
-            tabControlMap.Location = new Point(6, 204);
+            tabControlMap.Controls.Add(tabPage2);
+            tabControlMap.Location = new Point(6, 222);
             tabControlMap.Name = "tabControlMap";
             tabControlMap.SelectedIndex = 0;
-            tabControlMap.Size = new Size(725, 425);
+            tabControlMap.Size = new Size(1081, 407);
             tabControlMap.TabIndex = 4;
             // 
             // tabPage1
@@ -541,7 +940,7 @@
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(717, 392);
+            tabPage1.Size = new Size(1073, 374);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Trova riferimenti";
             tabPage1.UseVisualStyleBackColor = true;
@@ -550,19 +949,19 @@
             // 
             treeViewMapFindRefBinding.Location = new Point(361, 59);
             treeViewMapFindRefBinding.Name = "treeViewMapFindRefBinding";
-            treeViewMapFindRefBinding.Size = new Size(346, 327);
+            treeViewMapFindRefBinding.Size = new Size(346, 309);
             treeViewMapFindRefBinding.TabIndex = 5;
             // 
             // treeViewMapFindRefDatasource
             // 
             treeViewMapFindRefDatasource.Location = new Point(6, 59);
             treeViewMapFindRefDatasource.Name = "treeViewMapFindRefDatasource";
-            treeViewMapFindRefDatasource.Size = new Size(349, 327);
+            treeViewMapFindRefDatasource.Size = new Size(349, 309);
             treeViewMapFindRefDatasource.TabIndex = 4;
             // 
             // buttonMapFinndRef
             // 
-            buttonMapFinndRef.Location = new Point(617, 25);
+            buttonMapFinndRef.Location = new Point(973, 26);
             buttonMapFinndRef.Name = "buttonMapFinndRef";
             buttonMapFinndRef.Size = new Size(94, 29);
             buttonMapFinndRef.TabIndex = 3;
@@ -573,7 +972,7 @@
             // 
             textBoxMapFindRef.Location = new Point(6, 26);
             textBoxMapFindRef.Name = "textBoxMapFindRef";
-            textBoxMapFindRef.Size = new Size(605, 27);
+            textBoxMapFindRef.Size = new Size(961, 27);
             textBoxMapFindRef.TabIndex = 2;
             // 
             // labelMapFindRef
@@ -587,7 +986,7 @@
             // 
             // buttonMapUpload
             // 
-            buttonMapUpload.Location = new Point(649, 28);
+            buttonMapUpload.Location = new Point(1005, 28);
             buttonMapUpload.Name = "buttonMapUpload";
             buttonMapUpload.Size = new Size(94, 27);
             buttonMapUpload.TabIndex = 5;
@@ -599,7 +998,7 @@
             // 
             textBoxMapFile.Location = new Point(106, 28);
             textBoxMapFile.Name = "textBoxMapFile";
-            textBoxMapFile.Size = new Size(537, 27);
+            textBoxMapFile.Size = new Size(893, 27);
             textBoxMapFile.TabIndex = 4;
             // 
             // buttonMapBrowse
@@ -631,26 +1030,254 @@
             tabPageFormat.Location = new Point(4, 29);
             tabPageFormat.Name = "tabPageFormat";
             tabPageFormat.Padding = new Padding(3);
-            tabPageFormat.Size = new Size(749, 739);
+            tabPageFormat.Size = new Size(1240, 739);
             tabPageFormat.TabIndex = 2;
             tabPageFormat.Text = "Format";
             tabPageFormat.UseVisualStyleBackColor = true;
             // 
             // groupBoxFormat
             // 
+            groupBoxFormat.Controls.Add(groupBoxFormatExtension);
+            groupBoxFormat.Controls.Add(groupBoxFormatBaseModel);
+            groupBoxFormat.Controls.Add(groupBoxFormatBaseFormat);
             groupBoxFormat.Controls.Add(groupBoxFormatInfo);
             groupBoxFormat.Controls.Add(tabControlFormat);
             groupBoxFormat.Location = new Point(6, 59);
             groupBoxFormat.Name = "groupBoxFormat";
-            groupBoxFormat.Size = new Size(737, 586);
+            groupBoxFormat.Size = new Size(1228, 674);
             groupBoxFormat.TabIndex = 7;
             groupBoxFormat.TabStop = false;
             groupBoxFormat.Text = "Format";
             // 
+            // groupBoxFormatExtension
+            // 
+            groupBoxFormatExtension.Controls.Add(groupBoxFormatExtensionImport);
+            groupBoxFormatExtension.Controls.Add(buttonFormatExtensionBrowse);
+            groupBoxFormatExtension.Controls.Add(buttonFormatExtensionReset);
+            groupBoxFormatExtension.Controls.Add(textBoxFormatExtensionBrowse);
+            groupBoxFormatExtension.Controls.Add(labelFormatExtension);
+            groupBoxFormatExtension.Controls.Add(buttonFormatExtensionImport);
+            groupBoxFormatExtension.Location = new Point(762, 26);
+            groupBoxFormatExtension.Name = "groupBoxFormatExtension";
+            groupBoxFormatExtension.Size = new Size(460, 225);
+            groupBoxFormatExtension.TabIndex = 25;
+            groupBoxFormatExtension.TabStop = false;
+            groupBoxFormatExtension.Text = "Estensione";
+            // 
+            // groupBoxFormatExtensionImport
+            // 
+            groupBoxFormatExtensionImport.Controls.Add(textBoxFormatExtensionImportSerial);
+            groupBoxFormatExtensionImport.Controls.Add(labelFormatExtensionImportVers);
+            groupBoxFormatExtensionImport.Controls.Add(labelFormatExtensionImportSerial);
+            groupBoxFormatExtensionImport.Controls.Add(textBoxFormatExtensionImportVers);
+            groupBoxFormatExtensionImport.Location = new Point(6, 127);
+            groupBoxFormatExtensionImport.Name = "groupBoxFormatExtensionImport";
+            groupBoxFormatExtensionImport.Size = new Size(448, 90);
+            groupBoxFormatExtensionImport.TabIndex = 26;
+            groupBoxFormatExtensionImport.TabStop = false;
+            groupBoxFormatExtensionImport.Text = "GER base importato";
+            // 
+            // textBoxFormatExtensionImportSerial
+            // 
+            textBoxFormatExtensionImportSerial.Enabled = false;
+            textBoxFormatExtensionImportSerial.Location = new Point(68, 23);
+            textBoxFormatExtensionImportSerial.Name = "textBoxFormatExtensionImportSerial";
+            textBoxFormatExtensionImportSerial.Size = new Size(368, 27);
+            textBoxFormatExtensionImportSerial.TabIndex = 21;
+            // 
+            // labelFormatExtensionImportVers
+            // 
+            labelFormatExtensionImportVers.Location = new Point(9, 56);
+            labelFormatExtensionImportVers.Name = "labelFormatExtensionImportVers";
+            labelFormatExtensionImportVers.Size = new Size(68, 27);
+            labelFormatExtensionImportVers.TabIndex = 25;
+            labelFormatExtensionImportVers.Text = "Versione";
+            labelFormatExtensionImportVers.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelFormatExtensionImportSerial
+            // 
+            labelFormatExtensionImportSerial.Location = new Point(6, 23);
+            labelFormatExtensionImportSerial.Name = "labelFormatExtensionImportSerial";
+            labelFormatExtensionImportSerial.Size = new Size(56, 27);
+            labelFormatExtensionImportSerial.TabIndex = 23;
+            labelFormatExtensionImportSerial.Text = "Seriale";
+            labelFormatExtensionImportSerial.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBoxFormatExtensionImportVers
+            // 
+            textBoxFormatExtensionImportVers.Enabled = false;
+            textBoxFormatExtensionImportVers.Location = new Point(80, 56);
+            textBoxFormatExtensionImportVers.Name = "textBoxFormatExtensionImportVers";
+            textBoxFormatExtensionImportVers.Size = new Size(356, 27);
+            textBoxFormatExtensionImportVers.TabIndex = 24;
+            // 
+            // buttonFormatExtensionBrowse
+            // 
+            buttonFormatExtensionBrowse.Location = new Point(7, 94);
+            buttonFormatExtensionBrowse.Name = "buttonFormatExtensionBrowse";
+            buttonFormatExtensionBrowse.Size = new Size(59, 29);
+            buttonFormatExtensionBrowse.TabIndex = 20;
+            buttonFormatExtensionBrowse.Text = "Cerca";
+            buttonFormatExtensionBrowse.UseVisualStyleBackColor = true;
+            buttonFormatExtensionBrowse.Click += buttonFormatExtensionBrowse_Click;
+            // 
+            // buttonFormatExtensionReset
+            // 
+            buttonFormatExtensionReset.Location = new Point(394, 94);
+            buttonFormatExtensionReset.Name = "buttonFormatExtensionReset";
+            buttonFormatExtensionReset.Size = new Size(60, 29);
+            buttonFormatExtensionReset.TabIndex = 19;
+            buttonFormatExtensionReset.Text = "Reset";
+            buttonFormatExtensionReset.UseVisualStyleBackColor = true;
+            buttonFormatExtensionReset.Click += buttonFormatExtensionReset_Click;
+            // 
+            // textBoxFormatExtensionBrowse
+            // 
+            textBoxFormatExtensionBrowse.Enabled = false;
+            textBoxFormatExtensionBrowse.Location = new Point(72, 94);
+            textBoxFormatExtensionBrowse.Name = "textBoxFormatExtensionBrowse";
+            textBoxFormatExtensionBrowse.Size = new Size(238, 27);
+            textBoxFormatExtensionBrowse.TabIndex = 16;
+            // 
+            // labelFormatExtension
+            // 
+            labelFormatExtension.Location = new Point(6, 23);
+            labelFormatExtension.Name = "labelFormatExtension";
+            labelFormatExtension.Size = new Size(448, 68);
+            labelFormatExtension.TabIndex = 15;
+            labelFormatExtension.Text = "Se il GER è stato sviluppato in estensione è caldamente consigliabile importare anche il GER base per poter usufruire delle label, così da avere un risultato più vicino alla realtà possibile:";
+            // 
+            // buttonFormatExtensionImport
+            // 
+            buttonFormatExtensionImport.Location = new Point(316, 94);
+            buttonFormatExtensionImport.Name = "buttonFormatExtensionImport";
+            buttonFormatExtensionImport.Size = new Size(72, 29);
+            buttonFormatExtensionImport.TabIndex = 14;
+            buttonFormatExtensionImport.Text = "Importa";
+            buttonFormatExtensionImport.UseVisualStyleBackColor = true;
+            buttonFormatExtensionImport.Click += buttonFormatExtensionImport_Click;
+            // 
+            // groupBoxFormatBaseModel
+            // 
+            groupBoxFormatBaseModel.Controls.Add(labelFormatBaseModelSerial);
+            groupBoxFormatBaseModel.Controls.Add(textBoxFormatBaseModelVers);
+            groupBoxFormatBaseModel.Controls.Add(label3);
+            groupBoxFormatBaseModel.Controls.Add(textBoxFormatBaseModelSerial);
+            groupBoxFormatBaseModel.Location = new Point(410, 26);
+            groupBoxFormatBaseModel.Name = "groupBoxFormatBaseModel";
+            groupBoxFormatBaseModel.Size = new Size(346, 95);
+            groupBoxFormatBaseModel.TabIndex = 23;
+            groupBoxFormatBaseModel.TabStop = false;
+            groupBoxFormatBaseModel.Text = "Model referenziato";
+            // 
+            // labelFormatBaseModelSerial
+            // 
+            labelFormatBaseModelSerial.Location = new Point(6, 26);
+            labelFormatBaseModelSerial.Name = "labelFormatBaseModelSerial";
+            labelFormatBaseModelSerial.Size = new Size(61, 27);
+            labelFormatBaseModelSerial.TabIndex = 19;
+            labelFormatBaseModelSerial.Text = "Seriale";
+            labelFormatBaseModelSerial.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBoxFormatBaseModelVers
+            // 
+            textBoxFormatBaseModelVers.Enabled = false;
+            textBoxFormatBaseModelVers.Location = new Point(83, 59);
+            textBoxFormatBaseModelVers.Name = "textBoxFormatBaseModelVers";
+            textBoxFormatBaseModelVers.Size = new Size(257, 27);
+            textBoxFormatBaseModelVers.TabIndex = 20;
+            // 
+            // label3
+            // 
+            label3.Location = new Point(6, 59);
+            label3.Name = "label3";
+            label3.Size = new Size(71, 27);
+            label3.TabIndex = 21;
+            label3.Text = "Versione";
+            label3.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBoxFormatBaseModelSerial
+            // 
+            textBoxFormatBaseModelSerial.Enabled = false;
+            textBoxFormatBaseModelSerial.Location = new Point(73, 26);
+            textBoxFormatBaseModelSerial.Name = "textBoxFormatBaseModelSerial";
+            textBoxFormatBaseModelSerial.Size = new Size(267, 27);
+            textBoxFormatBaseModelSerial.TabIndex = 18;
+            // 
+            // groupBoxFormatBaseFormat
+            // 
+            groupBoxFormatBaseFormat.Controls.Add(textBoxFormatBaseFormatSerial);
+            groupBoxFormatBaseFormat.Controls.Add(labelFormatBaseFormatSerial);
+            groupBoxFormatBaseFormat.Controls.Add(textBoxFormatBaseFormatExtension);
+            groupBoxFormatBaseFormat.Controls.Add(labelFormatBaseFormatExtension);
+            groupBoxFormatBaseFormat.Controls.Add(labelFormatBaseFormatVers);
+            groupBoxFormatBaseFormat.Controls.Add(textBoxFormatBaseFormatVers);
+            groupBoxFormatBaseFormat.Location = new Point(410, 125);
+            groupBoxFormatBaseFormat.Name = "groupBoxFormatBaseFormat";
+            groupBoxFormatBaseFormat.Size = new Size(346, 126);
+            groupBoxFormatBaseFormat.TabIndex = 24;
+            groupBoxFormatBaseFormat.TabStop = false;
+            groupBoxFormatBaseFormat.Text = "Mapping estensione";
+            // 
+            // textBoxFormatBaseFormatSerial
+            // 
+            textBoxFormatBaseFormatSerial.Enabled = false;
+            textBoxFormatBaseFormatSerial.Location = new Point(68, 59);
+            textBoxFormatBaseFormatSerial.Name = "textBoxFormatBaseFormatSerial";
+            textBoxFormatBaseFormatSerial.Size = new Size(272, 27);
+            textBoxFormatBaseFormatSerial.TabIndex = 14;
+            // 
+            // labelFormatBaseFormatSerial
+            // 
+            labelFormatBaseFormatSerial.Location = new Point(6, 59);
+            labelFormatBaseFormatSerial.Name = "labelFormatBaseFormatSerial";
+            labelFormatBaseFormatSerial.Size = new Size(54, 27);
+            labelFormatBaseFormatSerial.TabIndex = 15;
+            labelFormatBaseFormatSerial.Text = "Seriale";
+            labelFormatBaseFormatSerial.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBoxFormatBaseFormatExtension
+            // 
+            textBoxFormatBaseFormatExtension.Enabled = false;
+            textBoxFormatBaseFormatExtension.Location = new Point(113, 26);
+            textBoxFormatBaseFormatExtension.Name = "textBoxFormatBaseFormatExtension";
+            textBoxFormatBaseFormatExtension.Size = new Size(227, 27);
+            textBoxFormatBaseFormatExtension.TabIndex = 12;
+            // 
+            // labelFormatBaseFormatExtension
+            // 
+            labelFormatBaseFormatExtension.Location = new Point(6, 26);
+            labelFormatBaseFormatExtension.Name = "labelFormatBaseFormatExtension";
+            labelFormatBaseFormatExtension.Size = new Size(101, 27);
+            labelFormatBaseFormatExtension.TabIndex = 13;
+            labelFormatBaseFormatExtension.Text = "In estensione";
+            labelFormatBaseFormatExtension.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelFormatBaseFormatVers
+            // 
+            labelFormatBaseFormatVers.Location = new Point(6, 92);
+            labelFormatBaseFormatVers.Name = "labelFormatBaseFormatVers";
+            labelFormatBaseFormatVers.Size = new Size(65, 27);
+            labelFormatBaseFormatVers.TabIndex = 6;
+            labelFormatBaseFormatVers.Text = "Versione";
+            labelFormatBaseFormatVers.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBoxFormatBaseFormatVers
+            // 
+            textBoxFormatBaseFormatVers.Enabled = false;
+            textBoxFormatBaseFormatVers.Location = new Point(77, 92);
+            textBoxFormatBaseFormatVers.Name = "textBoxFormatBaseFormatVers";
+            textBoxFormatBaseFormatVers.Size = new Size(263, 27);
+            textBoxFormatBaseFormatVers.TabIndex = 7;
+            // 
             // groupBoxFormatInfo
             // 
-            groupBoxFormatInfo.Controls.Add(textBoxFormatVers);
+            groupBoxFormatInfo.Controls.Add(labelMapLabels);
+            groupBoxFormatInfo.Controls.Add(textBoxFormatLabels);
             groupBoxFormatInfo.Controls.Add(labelFormatVers);
+            groupBoxFormatInfo.Controls.Add(textBoxFormatVers);
+            groupBoxFormatInfo.Controls.Add(textBoxFormatSerial);
+            groupBoxFormatInfo.Controls.Add(labelFormatSerial);
             groupBoxFormatInfo.Controls.Add(labelFormatProvider);
             groupBoxFormatInfo.Controls.Add(textBoxFormatProvider);
             groupBoxFormatInfo.Controls.Add(textBoxFormatDescr);
@@ -659,87 +1286,121 @@
             groupBoxFormatInfo.Controls.Add(labelFormatName);
             groupBoxFormatInfo.Location = new Point(10, 26);
             groupBoxFormatInfo.Name = "groupBoxFormatInfo";
-            groupBoxFormatInfo.Size = new Size(717, 172);
+            groupBoxFormatInfo.Size = new Size(394, 225);
             groupBoxFormatInfo.TabIndex = 5;
             groupBoxFormatInfo.TabStop = false;
             groupBoxFormatInfo.Text = "Info";
             // 
-            // textBoxFormatVers
+            // labelMapLabels
             // 
-            textBoxFormatVers.Enabled = false;
-            textBoxFormatVers.Location = new Point(6, 118);
-            textBoxFormatVers.Name = "textBoxFormatVers";
-            textBoxFormatVers.Size = new Size(199, 27);
-            textBoxFormatVers.TabIndex = 7;
+            labelMapLabels.Location = new Point(6, 188);
+            labelMapLabels.Name = "labelMapLabels";
+            labelMapLabels.Size = new Size(71, 27);
+            labelMapLabels.TabIndex = 11;
+            labelMapLabels.Text = "Labels";
+            labelMapLabels.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBoxFormatLabels
+            // 
+            textBoxFormatLabels.Enabled = false;
+            textBoxFormatLabels.Location = new Point(83, 188);
+            textBoxFormatLabels.Name = "textBoxFormatLabels";
+            textBoxFormatLabels.Size = new Size(302, 27);
+            textBoxFormatLabels.TabIndex = 10;
             // 
             // labelFormatVers
             // 
-            labelFormatVers.AutoSize = true;
-            labelFormatVers.Location = new Point(6, 95);
+            labelFormatVers.Location = new Point(6, 155);
             labelFormatVers.Name = "labelFormatVers";
-            labelFormatVers.Size = new Size(65, 20);
-            labelFormatVers.TabIndex = 6;
+            labelFormatVers.Size = new Size(71, 27);
+            labelFormatVers.TabIndex = 9;
             labelFormatVers.Text = "Versione";
+            labelFormatVers.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBoxFormatVers
+            // 
+            textBoxFormatVers.Enabled = false;
+            textBoxFormatVers.Location = new Point(83, 155);
+            textBoxFormatVers.Name = "textBoxFormatVers";
+            textBoxFormatVers.Size = new Size(302, 27);
+            textBoxFormatVers.TabIndex = 8;
+            // 
+            // textBoxFormatSerial
+            // 
+            textBoxFormatSerial.Enabled = false;
+            textBoxFormatSerial.Location = new Point(76, 122);
+            textBoxFormatSerial.Name = "textBoxFormatSerial";
+            textBoxFormatSerial.Size = new Size(309, 27);
+            textBoxFormatSerial.TabIndex = 7;
+            // 
+            // labelFormatSerial
+            // 
+            labelFormatSerial.Location = new Point(6, 122);
+            labelFormatSerial.Name = "labelFormatSerial";
+            labelFormatSerial.Size = new Size(64, 27);
+            labelFormatSerial.TabIndex = 6;
+            labelFormatSerial.Text = "Seriale";
+            labelFormatSerial.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // labelFormatProvider
             // 
-            labelFormatProvider.AutoSize = true;
-            labelFormatProvider.Location = new Point(489, 23);
+            labelFormatProvider.Location = new Point(6, 89);
             labelFormatProvider.Name = "labelFormatProvider";
-            labelFormatProvider.Size = new Size(64, 20);
+            labelFormatProvider.Size = new Size(64, 27);
             labelFormatProvider.TabIndex = 5;
             labelFormatProvider.Text = "Provider";
+            labelFormatProvider.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // textBoxFormatProvider
             // 
             textBoxFormatProvider.Enabled = false;
-            textBoxFormatProvider.Location = new Point(489, 46);
+            textBoxFormatProvider.Location = new Point(76, 89);
             textBoxFormatProvider.Name = "textBoxFormatProvider";
-            textBoxFormatProvider.Size = new Size(222, 27);
+            textBoxFormatProvider.Size = new Size(309, 27);
             textBoxFormatProvider.TabIndex = 4;
             // 
             // textBoxFormatDescr
             // 
             textBoxFormatDescr.Enabled = false;
-            textBoxFormatDescr.Location = new Point(211, 46);
+            textBoxFormatDescr.Location = new Point(98, 56);
             textBoxFormatDescr.Name = "textBoxFormatDescr";
-            textBoxFormatDescr.Size = new Size(272, 27);
+            textBoxFormatDescr.Size = new Size(287, 27);
             textBoxFormatDescr.TabIndex = 3;
             // 
             // labelFormatDescr
             // 
-            labelFormatDescr.AutoSize = true;
-            labelFormatDescr.Location = new Point(211, 23);
+            labelFormatDescr.Location = new Point(6, 56);
             labelFormatDescr.Name = "labelFormatDescr";
-            labelFormatDescr.Size = new Size(86, 20);
+            labelFormatDescr.Size = new Size(86, 27);
             labelFormatDescr.TabIndex = 2;
             labelFormatDescr.Text = "Descrizione";
+            labelFormatDescr.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // textBoxFormatName
             // 
             textBoxFormatName.Enabled = false;
-            textBoxFormatName.Location = new Point(6, 46);
+            textBoxFormatName.Location = new Point(62, 23);
             textBoxFormatName.Name = "textBoxFormatName";
-            textBoxFormatName.Size = new Size(199, 27);
+            textBoxFormatName.Size = new Size(323, 27);
             textBoxFormatName.TabIndex = 1;
             // 
             // labelFormatName
             // 
-            labelFormatName.AutoSize = true;
             labelFormatName.Location = new Point(6, 23);
             labelFormatName.Name = "labelFormatName";
-            labelFormatName.Size = new Size(50, 20);
+            labelFormatName.Size = new Size(50, 27);
             labelFormatName.TabIndex = 0;
             labelFormatName.Text = "Nome";
+            labelFormatName.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // tabControlFormat
             // 
             tabControlFormat.Controls.Add(tabPageFormatFindRef);
             tabControlFormat.Controls.Add(tabPageFormatRebase);
-            tabControlFormat.Location = new Point(6, 204);
+            tabControlFormat.Location = new Point(270, 257);
             tabControlFormat.Name = "tabControlFormat";
             tabControlFormat.SelectedIndex = 0;
-            tabControlFormat.Size = new Size(725, 376);
+            tabControlFormat.Size = new Size(725, 411);
             tabControlFormat.TabIndex = 4;
             // 
             // tabPageFormatFindRef
@@ -752,7 +1413,7 @@
             tabPageFormatFindRef.Location = new Point(4, 29);
             tabPageFormatFindRef.Name = "tabPageFormatFindRef";
             tabPageFormatFindRef.Padding = new Padding(3);
-            tabPageFormatFindRef.Size = new Size(717, 343);
+            tabPageFormatFindRef.Size = new Size(717, 378);
             tabPageFormatFindRef.TabIndex = 0;
             tabPageFormatFindRef.Text = "Trova riferimenti";
             tabPageFormatFindRef.UseVisualStyleBackColor = true;
@@ -761,14 +1422,14 @@
             // 
             treeViewFormatFindRefMap.Location = new Point(355, 59);
             treeViewFormatFindRefMap.Name = "treeViewFormatFindRefMap";
-            treeViewFormatFindRefMap.Size = new Size(356, 278);
+            treeViewFormatFindRefMap.Size = new Size(356, 313);
             treeViewFormatFindRefMap.TabIndex = 5;
             // 
             // treeViewFormatFindRef
             // 
             treeViewFormatFindRef.Location = new Point(6, 59);
             treeViewFormatFindRef.Name = "treeViewFormatFindRef";
-            treeViewFormatFindRef.Size = new Size(343, 278);
+            treeViewFormatFindRef.Size = new Size(343, 313);
             treeViewFormatFindRef.TabIndex = 4;
             // 
             // buttonFormatFindRef
@@ -803,7 +1464,7 @@
             tabPageFormatRebase.Location = new Point(4, 29);
             tabPageFormatRebase.Name = "tabPageFormatRebase";
             tabPageFormatRebase.Padding = new Padding(3);
-            tabPageFormatRebase.Size = new Size(717, 343);
+            tabPageFormatRebase.Size = new Size(717, 378);
             tabPageFormatRebase.TabIndex = 1;
             tabPageFormatRebase.Text = "Rebase";
             tabPageFormatRebase.UseVisualStyleBackColor = true;
@@ -828,9 +1489,9 @@
             // 
             // buttonFormatUpload
             // 
-            buttonFormatUpload.Location = new Point(649, 28);
+            buttonFormatUpload.Location = new Point(1134, 26);
             buttonFormatUpload.Name = "buttonFormatUpload";
-            buttonFormatUpload.Size = new Size(94, 27);
+            buttonFormatUpload.Size = new Size(94, 29);
             buttonFormatUpload.TabIndex = 6;
             buttonFormatUpload.Text = "Importa";
             buttonFormatUpload.UseVisualStyleBackColor = true;
@@ -840,7 +1501,7 @@
             // 
             textBoxFormat.Location = new Point(106, 27);
             textBoxFormat.Name = "textBoxFormat";
-            textBoxFormat.Size = new Size(537, 27);
+            textBoxFormat.Size = new Size(1022, 27);
             textBoxFormat.TabIndex = 5;
             // 
             // buttonFormatBrowse
@@ -862,11 +1523,21 @@
             labelFormat.TabIndex = 2;
             labelFormat.Text = "Selezionare il file .xml di un file relativo ad un Format di un GER";
             // 
+            // tabPage2
+            // 
+            tabPage2.Location = new Point(4, 29);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(1073, 374);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Riferimenti inutili";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(781, 796);
+            ClientSize = new Size(1272, 796);
             Controls.Add(tabControlMain);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
@@ -876,6 +1547,10 @@
             tabPageModel.ResumeLayout(false);
             tabPageModel.PerformLayout();
             groupBoxModel.ResumeLayout(false);
+            groupBoxModelExtension.ResumeLayout(false);
+            groupBoxModelExtension.PerformLayout();
+            groupBoxModelExtensionImport.ResumeLayout(false);
+            groupBoxModelExtensionImport.PerformLayout();
             groupBoxModelInfo.ResumeLayout(false);
             groupBoxModelInfo.PerformLayout();
             tabControlModel.ResumeLayout(false);
@@ -884,6 +1559,10 @@
             tabPageMapping.ResumeLayout(false);
             tabPageMapping.PerformLayout();
             groupBoxMap.ResumeLayout(false);
+            groupBoxMapBaseModel.ResumeLayout(false);
+            groupBoxMapBaseModel.PerformLayout();
+            groupBoxMapExtension.ResumeLayout(false);
+            groupBoxMapExtension.PerformLayout();
             groupBoxMapInfo.ResumeLayout(false);
             groupBoxMapInfo.PerformLayout();
             tabControlMap.ResumeLayout(false);
@@ -892,6 +1571,14 @@
             tabPageFormat.ResumeLayout(false);
             tabPageFormat.PerformLayout();
             groupBoxFormat.ResumeLayout(false);
+            groupBoxFormatExtension.ResumeLayout(false);
+            groupBoxFormatExtension.PerformLayout();
+            groupBoxFormatExtensionImport.ResumeLayout(false);
+            groupBoxFormatExtensionImport.PerformLayout();
+            groupBoxFormatBaseModel.ResumeLayout(false);
+            groupBoxFormatBaseModel.PerformLayout();
+            groupBoxFormatBaseFormat.ResumeLayout(false);
+            groupBoxFormatBaseFormat.PerformLayout();
             groupBoxFormatInfo.ResumeLayout(false);
             groupBoxFormatInfo.PerformLayout();
             tabControlFormat.ResumeLayout(false);
@@ -933,8 +1620,8 @@
         private Button buttonMapUpload;
         private GroupBox groupBoxMap;
         private GroupBox groupBoxMapInfo;
-        private TextBox textBoxMapVers;
-        private Label labelMapPublicVers;
+        private TextBox textBoxMapExtensionVers;
+        private Label labelMapExtensionVers;
         private Label labelMapProvider;
         private TextBox textBoxMapProvider;
         private TextBox textBoxMapDescr;
@@ -952,8 +1639,8 @@
         private TextBox textBoxFormat;
         private GroupBox groupBoxFormat;
         private GroupBox groupBoxFormatInfo;
-        private TextBox textBoxFormatVers;
-        private Label labelFormatVers;
+        private TextBox textBoxFormatSerial;
+        private Label labelFormatSerial;
         private Label labelFormatProvider;
         private TextBox textBoxFormatProvider;
         private TextBox textBoxFormatDescr;
@@ -975,9 +1662,71 @@
         private Button buttonFormatRebase;
         private Button buttonFormatUpload;
         private TextBox textBoxMapModelMapping;
-        private Label labelMapModelMapping;
         private Button buttonModelFindRefReset;
         private Button buttonModelFindRefCollapse;
         private Button buttonModelFindRefExpand;
+        private Label labelModelIdentifier;
+        private TextBox textBoxModelIdentifier;
+        private Label labelModelIsExtension;
+        private TextBox textBoxModelIsExtension;
+        private GroupBox groupBoxModelExtension;
+        private Label labelModelExtensionIdSerial;
+        private TextBox textBoxModelExtensionIdSerial;
+        private TextBox textBoxModelExtensionLabels;
+        private Label labelModelExtensionLabelsNumber;
+        private TextBox textBoxModelExtensionFilepath;
+        private Label label1;
+        private Button buttonModelExtensionUpload;
+        private Button buttonModelExtensionReset;
+        private Button buttonModelExtensionBrowser;
+        private Label labelModelExtensionImportIdentifier;
+        private TextBox textBoxModelImportedExtensionIdSerial;
+        private Label labelModelExtensionIdVersion;
+        private TextBox textBoxModelExtensionIdVersion;
+        private Label labelModelImportedExtensionIdVersion;
+        private TextBox textBoxModelImportedExtensionIdVersion;
+        private TextBox textBoxMapSerial;
+        private Label labelMapSerial;
+        private TextBox textBoxMapExtension;
+        private Label labelMapVers;
+        private TextBox textBoxMapVers;
+        private Label labelMapExtensionSerial;
+        private TextBox textBoxMapExtensionSerial;
+        private Label labelMapExtension;
+        private Label labelMapBaseModelVers;
+        private TextBox textBoxMapBaseModelVers;
+        private Label labeMapBaseModelSerial;
+        private TextBox textBoxMapBaseModelSerial;
+        private GroupBox groupBoxMapExtension;
+        private GroupBox groupBoxMapBaseModel;
+        private GroupBox groupBoxModelExtensionImport;
+        private Label labelFormatVers;
+        private TextBox textBoxFormatVers;
+        private Label labelMapLabels;
+        private TextBox textBoxFormatLabels;
+        private GroupBox groupBoxFormatBaseModel;
+        private Label labelFormatBaseModelSerial;
+        private TextBox textBoxFormatBaseModelVers;
+        private Label label3;
+        private TextBox textBoxFormatBaseModelSerial;
+        private GroupBox groupBoxFormatBaseFormat;
+        private TextBox textBoxFormatBaseFormatSerial;
+        private Label labelFormatBaseFormatSerial;
+        private TextBox textBoxFormatBaseFormatExtension;
+        private Label labelFormatBaseFormatExtension;
+        private Label labelFormatBaseFormatVers;
+        private TextBox textBoxFormatBaseFormatVers;
+        private GroupBox groupBoxFormatExtension;
+        private GroupBox groupBoxFormatExtensionImport;
+        private TextBox textBoxFormatExtensionImportSerial;
+        private Label labelFormatExtensionImportVers;
+        private Label labelFormatExtensionImportSerial;
+        private TextBox textBoxFormatExtensionImportVers;
+        private Button buttonFormatExtensionBrowse;
+        private Button buttonFormatExtensionReset;
+        private TextBox textBoxFormatExtensionBrowse;
+        private Label labelFormatExtension;
+        private Button buttonFormatExtensionImport;
+        private TabPage tabPage2;
     }
 }

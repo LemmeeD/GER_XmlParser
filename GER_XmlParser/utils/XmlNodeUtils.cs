@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -45,14 +46,14 @@ namespace GER_XmlParser.utils
             }
         }
 
-        public static List<XmlNode> ParentsChainUntilReserve(XmlNode startingNode, XmlNode targetNode)
+        public static List<XmlNode> ParentsChainUntilReverse(XmlNode startingNode, XmlNode targetNode)
         {
             List<XmlNode> result = ParentsChainUntil(startingNode, targetNode, new HashSet<string>());
             result.Reverse();
             return result;
         }
 
-        public static List<XmlNode> ParentsChainUntilReserve(XmlNode startingNode, XmlNode targetNode, HashSet<string> blacklistNodeNames)
+        public static List<XmlNode> ParentsChainUntilReverse(XmlNode startingNode, XmlNode targetNode, HashSet<string> blacklistNodeNames)
         {
             List<XmlNode> result = ParentsChainUntil(startingNode, targetNode, blacklistNodeNames);
             result.Reverse();
@@ -114,7 +115,7 @@ namespace GER_XmlParser.utils
             string result = "";
             string separator = " ==> ";
             int count = 0;
-            List<XmlNode> chain = XmlNodeUtils.ParentsChainUntilReserve(matchednode, baseNode, new HashSet<string>() { "Contents." });
+            List<XmlNode> chain = XmlNodeUtils.ParentsChainUntilReverse(matchednode, baseNode, new HashSet<string>() { "Contents." });
             foreach (XmlNode node in chain)
             {
                 if (count == (chain.Count - 1)) result += StringifyAsModel(node);
@@ -126,6 +127,11 @@ namespace GER_XmlParser.utils
 
         public static string StringifyAsModel(XmlNode node)
         {
+            return StringifyAsModel(node, new Dictionary<string, string>());
+        }
+
+        public static string StringifyAsModel(XmlNode node, Dictionary<string, string> labels)
+        {
             string result = "";
             if (node.Attributes == null) throw new ArgumentException("Non dovrebbe essere possibile");
             else
@@ -135,7 +141,24 @@ namespace GER_XmlParser.utils
                 string attrLabel = null;
                 if (node.Attributes["Label"] != null) attrLabel = node.Attributes["Label"].Value;
 
-                if ((attrLabel != null) && (!attrLabel.StartsWith("@"))) result += attrLabel;
+                if (attrLabel != null)
+                {
+                    if (attrLabel.StartsWith("@"))
+                    {
+                        try
+                        {
+                            result += labels[attrLabel.Replace("@GER_LABEL:", "")];
+                        }
+                        catch (KeyNotFoundException)
+                        {
+                            //
+                        }
+                    }
+                    else
+                    {
+                        result += attrLabel;
+                    }
+                }
                 if (result != "") result += string.Format(@"({0})", attrName);
                 else result += attrName;
             }

@@ -1,7 +1,9 @@
 ﻿using GER_XmlParser.utils;
 using System;
 using System.Collections.Generic;
+using System.DirectoryServices;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +12,10 @@ using System.Xml;
 
 namespace GER_XmlParser.entities
 {
+    /// <summary>
+    /// Implementazione custom di un albero che può prevedere multiple radici
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class MyTree<T> where T : class
     {
         // FIELDS
@@ -17,6 +23,11 @@ namespace GER_XmlParser.entities
         public List<MyTreeNode<T>> Roots { get; }
 
         // CONSTRUCTORS
+        public MyTree()
+        {
+            this.Roots = new List<MyTreeNode<T>>();
+        }
+
         public MyTree(List<MyTreeNode<T>> roots)
         {
             this.Roots = roots;
@@ -45,6 +56,14 @@ namespace GER_XmlParser.entities
                 if (result != null) return result;
             }
             return null;
+        }
+
+        public void Traverse(Action<MyTreeNode<T>> action)
+        {
+            foreach (MyTreeNode<T> root in this.Roots)
+            {
+                root.Traverse(action);
+            }
         }
 
         public void RemoveRoot(MyTreeNode<T> rootToBeRemoved)
@@ -87,6 +106,33 @@ namespace GER_XmlParser.entities
             }
         }
 
+        public MyTree<T> DeepCopy()
+        {
+            List<MyTreeNode<T>> deepCopyRoots = new List<MyTreeNode<T>>();
+            foreach (MyTreeNode<T> root in this.Roots)
+            {
+                deepCopyRoots.Add(root.DeepCopy());
+            }
+            MyTree<T> deepCopy = new MyTree<T>(deepCopyRoots);
+
+            Action<MyTreeNode<T>> action = delegate (MyTreeNode<T> node)
+            {
+                List<MyTreeNode<T>> deepCopiedChildren = new List<MyTreeNode<T>>();
+                foreach (MyTreeNode<T> child in node.Children)
+                {
+                    deepCopiedChildren.Add(child.DeepCopy());
+                }
+                node.Children.Clear();
+                node.Children.AddRange(deepCopiedChildren);
+            };
+
+            foreach (MyTreeNode<T> root in this.Roots)
+            {
+                root.Traverse(action);
+            }
+            return deepCopy;
+        }
+
         public void PopulateTreeViewControl(TreeView treeView, Func<MyTreeNode<T>, TreeNode> translateFunc)
         {
             foreach (MyTreeNode<T> root in this.Roots)
@@ -107,27 +153,32 @@ namespace GER_XmlParser.entities
             }
         }
 
-        public static MyTree<XmlNode> ComputeFromModelFindRef(List<XmlNode> nodesFound, XmlNode nodeRootToBeExcluded)
+        public static MyTree<XmlNode> ComputeFromModelFindRef(List<XmlNode> nodesFound, XmlNode nodeRootToBeExcluded, Dictionary<string, string> labels)
         {
-            MyTreeNode<XmlNode> myRoot = new MyTreeNode<XmlNode>(nodeRootToBeExcluded, XmlNodeUtils.StringifyAsModel(nodeRootToBeExcluded));
+            // radice unica temporanea che corrisponde al nodo 'Contents.'
+            MyTreeNode<XmlNode> myRoot = new MyTreeNode<XmlNode>(nodeRootToBeExcluded, XmlNodeUtils.StringifyAsModel(nodeRootToBeExcluded, labels));
             MyTree<XmlNode> myTree = new MyTree<XmlNode>(myRoot);
             foreach (XmlNode node in nodesFound)
             {
-                List<XmlNode> parentsChainUntilNodeTobeExcluded = XmlNodeUtils.ParentsChainUntilReserve(node, nodeRootToBeExcluded, new HashSet<string>() { "Contents." });
+                List<XmlNode> parentsChainUntilNodeTobeExcluded = XmlNodeUtils.ParentsChainUntilReverse(node, nodeRootToBeExcluded, new HashSet<string>() { "Contents." });
                 XmlNode first = parentsChainUntilNodeTobeExcluded[0];
                 MyTreeNode<XmlNode> myCursor;
                 MyTreeNode<XmlNode> firstOfChain = myTree.Find(first);
-                if (firstOfChain == null) firstOfChain = myRoot.AddChild(first, XmlNodeUtils.StringifyAsModel(first));
+                if (firstOfChain == null) firstOfChain = myRoot.AddChild(first, XmlNodeUtils.StringifyAsModel(first, labels));
                 myCursor = firstOfChain;
                 foreach (XmlNode cursor in parentsChainUntilNodeTobeExcluded.Skip(1))
                 {
-                    MyTreeNode<XmlNode> newMyCursor = myCursor.AddChild(cursor, XmlNodeUtils.StringifyAsModel(cursor));
+                    // aggiunta del figlio controllare se esiste già
+                    MyTreeNode<XmlNode> newMyCursor = myCursor.AddChild(cursor, XmlNodeUtils.StringifyAsModel(cursor, labels));
                     myCursor = newMyCursor;
                 }
             }
             myTree.RemoveRoot(myRoot);
+            //myTree.
             myTree.Sort();
             return myTree;
         }
+
+
     }
 }

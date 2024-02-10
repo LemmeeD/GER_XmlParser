@@ -4,6 +4,7 @@ using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace GER_XmlParser.entities
@@ -77,15 +78,6 @@ namespace GER_XmlParser.entities
             else return alreadyExisting;
         }
 
-        public void Traverse(Action<T> action)
-        {
-            action(this.Content);
-            foreach (MyTreeNode<T> child in this.Children)
-            {
-                child.Traverse(action);
-            }
-        }
-
         public void Traverse(Action<MyTreeNode<T>> action)
         {
             action(this);
@@ -116,6 +108,16 @@ namespace GER_XmlParser.entities
             };
         }
 
+        public MyTree<T> Subtree()
+        {
+            return new MyTree<T>(this);
+        }
+
+        public MyTree<T> AddChildSubtree()
+        {
+            return new MyTree<T>(this);
+        }
+
         public override bool Equals(object? obj)
         {
             if (obj == null) return false;
@@ -130,6 +132,13 @@ namespace GER_XmlParser.entities
         public override string ToString()
         {
             return this.DisplayText;
+        }
+
+        public MyTreeNode<T> DeepCopy()
+        {
+            MyTreeNode<T> deepCopy = new MyTreeNode<T>(this.Parent, this.Content, string.Copy(this.DisplayText));
+            deepCopy.Children = this.Children;
+            return deepCopy;
         }
     }
 }

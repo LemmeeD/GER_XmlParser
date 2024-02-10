@@ -21,8 +21,13 @@ namespace GER_XmlParser
         #endregion
         #region PROPERTIES
         public XmlModelFileWrapper ModelWrapper { get; set; }
+        public XmlModelFileWrapper ReferencedModelWrapper { get; set; }
         public XmlMappingWrapper MappingWrapper { get; set; }
         public XmlFormatFileWrapper FormatWrapper { get; set; }
+        public XmlFormatFileWrapper ReferencedFormatWrapper { get; set; }
+        protected static Color SUCCESS = Color.LightGreen;
+        protected static Color WARNING = Color.LightYellow;
+        protected static Color ERROR = Color.LightCoral;
         #endregion
 
         #region CONSTRUCTORS
@@ -41,7 +46,7 @@ namespace GER_XmlParser
             {
                 this.ModelWrapper = new XmlModelFileWrapper(this.textBoxModelFile.Text);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 this.groupBoxModel.Enabled = false;
                 AlertError("File .xml non valido per un model");
@@ -52,6 +57,22 @@ namespace GER_XmlParser
             this.textBoxModelDescr.Text = this.ModelWrapper.Description;
             this.textBoxModelVendor.Text = this.ModelWrapper.Vendor;
             this.textBoxModelPublicVersNum.Text = this.ModelWrapper.PublicVersionNumber;
+            this.textBoxModelIdentifier.Text = this.ModelWrapper.Identifier.Serial;
+            this.textBoxModelExtensionLabels.Text = this.ModelWrapper.CountLabels.ToString();
+            if (this.ModelWrapper.Extension)
+            {
+                this.textBoxModelIsExtension.Text = "Si";
+                this.groupBoxModelExtension.Enabled = true;
+                this.textBoxModelExtensionIdSerial.Text = this.ModelWrapper.ReferencedIdentifier.Serial;
+                this.textBoxModelExtensionIdVersion.Text = this.ModelWrapper.ReferencedIdentifier.NumberString;
+            }
+            else
+            {
+                this.textBoxModelIsExtension.Text = "No";
+                this.groupBoxModelExtension.Enabled = false;
+                this.textBoxModelExtensionIdSerial.Text = "";
+                this.textBoxModelExtensionIdVersion.Text = "";
+            }
 
             MyTree<XmlNode> myTree = this.ModelWrapper.FindEntireModelContents();
             this.treeViewModelFindRef.Nodes.Clear();
@@ -74,14 +95,41 @@ namespace GER_XmlParser
             }
             this.groupBoxMap.Enabled = true;
             this.textBoxMapName.Text = this.MappingWrapper.Name;
-
+            this.textBoxMapDescr.Text = this.MappingWrapper.Description;
             this.textBoxMapProvider.Text = this.MappingWrapper.Vendor;
-            this.textBoxMapVers.Text = this.MappingWrapper.PublicVersionNumber;
+            this.textBoxMapSerial.Text = this.MappingWrapper.Identifier.Serial;
+            this.textBoxMapVers.Text = this.MappingWrapper.Identifier.NumberString;
             foreach (string idMapping in this.MappingWrapper.IdMappingVersions)
             {
                 this.comboBoxMapVers.Items.Add(idMapping);
             }
             this.comboBoxMapVers.SelectedIndex = 0;
+
+            if (this.MappingWrapper.IsBaseModelComputable)
+            {
+                this.textBoxMapBaseModelSerial.Text = this.MappingWrapper.BaseModelIdentifier.Serial;
+                this.textBoxMapBaseModelVers.Text = this.MappingWrapper.BaseModelIdentifier.NumberString;
+            }
+            else
+            {
+                this.textBoxMapBaseModelSerial.Text = "???";
+                this.textBoxMapBaseModelVers.Text = "???";
+            }
+
+            if (this.MappingWrapper.Extension)
+            {
+                this.textBoxMapExtension.Text = "Si";
+                this.groupBoxMapExtension.Enabled = true;
+                this.textBoxMapExtensionSerial.Text = this.MappingWrapper.BaseMappingIdentifier.Serial;
+                this.textBoxMapExtensionVers.Text = this.MappingWrapper.BaseMappingIdentifier.NumberString;
+            }
+            else
+            {
+                this.textBoxMapExtension.Text = "No";
+                this.groupBoxMapExtension.Enabled = false;
+                this.textBoxMapExtensionSerial.Text = "";
+                this.textBoxMapExtensionVers.Text = "";
+            }
         }
         #endregion
 
@@ -102,7 +150,35 @@ namespace GER_XmlParser
             this.textBoxFormatName.Text = this.FormatWrapper.Name;
             this.textBoxFormatDescr.Text = this.FormatWrapper.Description;
             this.textBoxFormatProvider.Text = this.FormatWrapper.Vendor;
-            this.textBoxFormatVers.Text = this.FormatWrapper.PublicVersionNumber;
+            this.textBoxFormatSerial.Text = this.FormatWrapper.Identifier.Serial;
+            this.textBoxFormatVers.Text = this.FormatWrapper.Identifier.NumberString;
+            this.textBoxFormatLabels.Text = this.FormatWrapper.CountLabels.ToString();
+
+            if (this.FormatWrapper.IsBaseModelComputable)
+            {
+                this.textBoxFormatBaseModelSerial.Text = this.FormatWrapper.BaseModelIdentifier.Serial;
+                this.textBoxFormatBaseModelVers.Text = this.FormatWrapper.BaseModelIdentifier.NumberString;
+            }
+            else
+            {
+                this.textBoxFormatBaseModelSerial.Text = "???";
+                this.textBoxFormatBaseModelVers.Text = "???";
+            }
+
+            if (this.FormatWrapper.Extension)
+            {
+                this.textBoxFormatBaseFormatExtension.Text = "Si";
+                this.groupBoxFormatExtension.Enabled = true;
+                this.textBoxFormatBaseFormatSerial.Text = this.FormatWrapper.BaseFormatIdentifier.Serial;
+                this.textBoxFormatBaseFormatVers.Text = this.FormatWrapper.BaseFormatIdentifier.NumberString;
+            }
+            else
+            {
+                this.textBoxFormatBaseFormatExtension.Text = "No";
+                this.groupBoxFormatExtension.Enabled = false;
+                this.textBoxFormatBaseFormatSerial.Text = "";
+                this.textBoxFormatBaseFormatVers.Text = "";
+            }
         }
         #endregion
 
@@ -177,6 +253,72 @@ namespace GER_XmlParser
                 TreeNodeUtils.Traverse(root, action);
             }
         }
+
+        private void buttonModelExtensionUpload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.ReferencedModelWrapper = new XmlModelFileWrapper(this.textBoxModelExtensionFilepath.Text);
+            }
+            catch (Exception)
+            {
+                AlertError("File .xml non valido per il model base");
+                return;
+            }
+            this.textBoxModelImportedExtensionIdSerial.Text = this.ReferencedModelWrapper.Identifier.Serial;
+            this.textBoxModelImportedExtensionIdVersion.Text = this.ReferencedModelWrapper.Identifier.NumberString;
+            this.ModelWrapper.ParseLabelsFrom(this.ReferencedModelWrapper);
+
+            if (this.ModelWrapper.ReferencedIdentifier.SameSerial(this.ReferencedModelWrapper.Identifier))
+            {
+                this.textBoxModelExtensionIdSerial.BackColor = SUCCESS;
+                this.textBoxModelImportedExtensionIdSerial.BackColor = SUCCESS;
+            }
+            else
+            {
+                this.textBoxModelExtensionIdSerial.BackColor = ERROR;
+                this.textBoxModelImportedExtensionIdSerial.BackColor = ERROR;
+                AlertError("Discordanza tra seriali!");
+            }
+            if (this.ModelWrapper.ReferencedIdentifier.SameVersion(this.ReferencedModelWrapper.Identifier))
+            {
+                this.textBoxModelExtensionIdVersion.BackColor = SUCCESS;
+                this.textBoxModelImportedExtensionIdVersion.BackColor = SUCCESS;
+
+            }
+            else
+            {
+                this.textBoxModelExtensionIdVersion.BackColor = WARNING;
+                this.textBoxModelImportedExtensionIdVersion.BackColor = WARNING;
+                AlertError("Discordanza tra versioni!");
+            }
+
+            this.textBoxModelExtensionLabels.Text = this.ReferencedModelWrapper.CountLabels.ToString();
+        }
+
+        private void buttonModelExtensionBrowser_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = BrowseXmlFile();
+            DialogResult dialogResult = openFileDialog.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                this.textBoxModelExtensionFilepath.Text = openFileDialog.FileName;
+            }
+        }
+
+        private void buttonModelExtensionReset_Click(object sender, EventArgs e)
+        {
+            this.textBoxModelExtensionFilepath.Text = "";
+            this.ReferencedModelWrapper = null;
+            this.textBoxModelExtensionLabels.Text = "";
+            this.ModelWrapper.Labels.Clear();
+            this.textBoxModelImportedExtensionIdSerial.Text = "";
+            this.textBoxModelImportedExtensionIdVersion.Text = "";
+            this.textBoxModelExtensionIdSerial.BackColor = Color.White;
+            this.textBoxModelImportedExtensionIdSerial.BackColor = Color.White;
+            this.textBoxModelExtensionIdVersion.BackColor = Color.White;
+            this.textBoxModelImportedExtensionIdVersion.BackColor = Color.White;
+        }
         #endregion
 
         #region Mapping
@@ -225,6 +367,70 @@ namespace GER_XmlParser
             int modifiedNodesCount = this.FormatWrapper.RemoveRevisionNumberAttributes();
             AlertSuccess(string.Format(@"Modificati {0} nodi", modifiedNodesCount));
         }
+
+        private void buttonFormatExtensionBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = BrowseXmlFile();
+            DialogResult dialogResult = openFileDialog.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                this.textBoxFormatExtensionBrowse.Text = openFileDialog.FileName;
+            }
+        }
+        private void buttonFormatExtensionReset_Click(object sender, EventArgs e)
+        {
+            this.textBoxFormatExtensionBrowse.Text = "";
+            this.ReferencedFormatWrapper = null;
+            this.textBoxFormatLabels.Text = "";
+            this.FormatWrapper.Labels.Clear();
+            this.textBoxFormatExtensionImportSerial.Text = "";
+            this.textBoxFormatExtensionImportVers.Text = "";
+            this.textBoxFormatExtensionImportSerial.BackColor = Color.White;
+            this.textBoxFormatExtensionImportVers.BackColor = Color.White;
+            this.textBoxFormatBaseFormatSerial.BackColor = Color.White;
+            this.textBoxFormatBaseFormatVers.BackColor = Color.White;
+        }
+        private void buttonFormatExtensionImport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.ReferencedFormatWrapper = new XmlFormatFileWrapper(this.textBoxFormatExtensionBrowse.Text);
+            }
+            catch (Exception)
+            {
+                AlertError("File .xml non valido per il Format base");
+                return;
+            }
+            this.textBoxFormatExtensionImportSerial.Text = this.ReferencedFormatWrapper.Identifier.Serial;
+            this.textBoxFormatExtensionImportVers.Text = this.ReferencedFormatWrapper.Identifier.NumberString;
+            this.FormatWrapper.ParseLabelsFrom(this.ReferencedFormatWrapper);
+
+            if (this.FormatWrapper.BaseFormatIdentifier.SameSerial(this.ReferencedFormatWrapper.Identifier))
+            {
+                this.textBoxFormatExtensionImportSerial.BackColor = SUCCESS;
+                this.textBoxFormatBaseFormatSerial.BackColor = SUCCESS;
+            }
+            else
+            {
+                this.textBoxFormatExtensionImportSerial.BackColor = ERROR;
+                this.textBoxFormatBaseFormatSerial.BackColor = ERROR;
+                AlertError("Discordanza tra seriali!");
+            }
+            if (this.FormatWrapper.BaseFormatIdentifier.SameVersion(this.ReferencedFormatWrapper.Identifier))
+            {
+                this.textBoxFormatExtensionImportVers.BackColor = SUCCESS;
+                this.textBoxFormatBaseFormatVers.BackColor = SUCCESS;
+
+            }
+            else
+            {
+                this.textBoxFormatExtensionImportVers.BackColor = WARNING;
+                this.textBoxFormatBaseFormatVers.BackColor = WARNING;
+                AlertError("Discordanza tra versioni!");
+            }
+
+            this.textBoxFormatLabels.Text = this.ReferencedFormatWrapper.CountLabels.ToString();
+        }
         #endregion
 
         #endregion
@@ -257,5 +463,6 @@ namespace GER_XmlParser
             }
         }
         #endregion
+
     }
 }

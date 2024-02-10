@@ -1,7 +1,9 @@
 namespace GER_XmlParser
 {
-    internal static class Program
+    public static class Program
     {
+        public const string LABEL_LANGUAGEID = "en-us";
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
