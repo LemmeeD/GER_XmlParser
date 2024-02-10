@@ -93,10 +93,12 @@ namespace GER_XmlParser.entities
         }
 
         // METHODS
+        //[contains-ignore-case(@Name, '{0}')] <--> [matches(@Name, '{0}', 'i')] in XPath2.0
         public MyTree<XmlNode> FindReferences(string str)
         {
             //string xPath = string.Format(@".//*[contains(@Name, '{0}') and not(ends-with(@Name, '_1'))]", str);
-            string xPath = string.Format(@"(.//ERDataContainerDescriptorItem | .//ERDataContainerDescriptor[not(ends-with(@Name, '_1')) or @IsEnum='1'])[contains(@Name, '{0}')]", str);
+            //string xPath = string.Format(@"(.//ERDataContainerDescriptorItem | .//ERDataContainerDescriptor[not(ends-with(@Name, '_1')) or @IsEnum='1'])[contains(@Name, '{0}')]", str);
+            string xPath = string.Format(@"(.//ERDataContainerDescriptorItem | .//ERDataContainerDescriptor[not(ends-with(@Name, '_1')) or @IsEnum='1'])[matches(@Name, '{0}', 'i')]", str);
             List<XmlNode> nodes = this.ComputeXPath2(this.BaseContentsNode, xPath);
             return MyTree<XmlNode>.ComputeFromModelFindRef(nodes, this.BaseContentsNode, this.Labels);
         }

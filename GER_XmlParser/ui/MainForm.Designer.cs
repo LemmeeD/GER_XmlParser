@@ -76,9 +76,11 @@
             textBoxModelFindRef = new TextBox();
             labelModelOpFindRef = new Label();
             tabPageMapping = new TabPage();
+            textBoxMapModelMappingDefinition = new TextBox();
+            textBoxMapModelMappingDescr = new TextBox();
             comboBoxMapVers = new ComboBox();
             labelMapVersion = new Label();
-            textBoxMapModelMapping = new TextBox();
+            textBoxMapModelMappingName = new TextBox();
             groupBoxMap = new GroupBox();
             groupBoxMapBaseModel = new GroupBox();
             labeMapBaseModelSerial = new Label();
@@ -105,11 +107,20 @@
             labelMapName = new Label();
             tabControlMap = new TabControl();
             tabPage1 = new TabPage();
+            pictureBoxMapFindRefBinding = new PictureBox();
+            buttonMapFindRefReset = new Button();
+            textBoxMapFindRefBindings = new TextBox();
+            labelMapFindRefBindings = new Label();
+            labelMapFindRefExpression = new Label();
+            textBoxMapFindRefExpression = new TextBox();
+            labelMapFindRefBinding = new Label();
+            labelMapFindRefDatasource = new Label();
             treeViewMapFindRefBinding = new TreeView();
             treeViewMapFindRefDatasource = new TreeView();
-            buttonMapFinndRef = new Button();
+            buttonMapFindRef = new Button();
             textBoxMapFindRef = new TextBox();
             labelMapFindRef = new Label();
+            tabPage2 = new TabPage();
             buttonMapUpload = new Button();
             textBoxMapFile = new TextBox();
             buttonMapBrowse = new Button();
@@ -166,7 +177,6 @@
             textBoxFormat = new TextBox();
             buttonFormatBrowse = new Button();
             labelFormat = new Label();
-            tabPage2 = new TabPage();
             tabControlMain.SuspendLayout();
             tabPageModel.SuspendLayout();
             groupBoxModel.SuspendLayout();
@@ -182,6 +192,7 @@
             groupBoxMapInfo.SuspendLayout();
             tabControlMap.SuspendLayout();
             tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxMapFindRefBinding).BeginInit();
             tabPageFormat.SuspendLayout();
             groupBoxFormat.SuspendLayout();
             groupBoxFormatExtension.SuspendLayout();
@@ -202,7 +213,7 @@
             tabControlMain.Location = new Point(12, 12);
             tabControlMain.Name = "tabControlMain";
             tabControlMain.SelectedIndex = 0;
-            tabControlMain.Size = new Size(1248, 772);
+            tabControlMain.Size = new Size(1248, 782);
             tabControlMain.TabIndex = 0;
             // 
             // tabPageModel
@@ -215,7 +226,7 @@
             tabPageModel.Location = new Point(4, 29);
             tabPageModel.Name = "tabPageModel";
             tabPageModel.Padding = new Padding(3);
-            tabPageModel.Size = new Size(1240, 739);
+            tabPageModel.Size = new Size(1240, 749);
             tabPageModel.TabIndex = 0;
             tabPageModel.Text = "Model";
             tabPageModel.UseVisualStyleBackColor = true;
@@ -559,10 +570,10 @@
             // tabControlModel
             // 
             tabControlModel.Controls.Add(tabPageModelFindRef);
-            tabControlModel.Location = new Point(268, 275);
+            tabControlModel.Location = new Point(10, 275);
             tabControlModel.Name = "tabControlModel";
             tabControlModel.SelectedIndex = 0;
-            tabControlModel.Size = new Size(725, 393);
+            tabControlModel.Size = new Size(1212, 393);
             tabControlModel.TabIndex = 4;
             // 
             // tabPageModelFindRef
@@ -577,14 +588,14 @@
             tabPageModelFindRef.Location = new Point(4, 29);
             tabPageModelFindRef.Name = "tabPageModelFindRef";
             tabPageModelFindRef.Padding = new Padding(3);
-            tabPageModelFindRef.Size = new Size(717, 360);
+            tabPageModelFindRef.Size = new Size(1204, 360);
             tabPageModelFindRef.TabIndex = 0;
             tabPageModelFindRef.Text = "Trova riferimenti";
             tabPageModelFindRef.UseVisualStyleBackColor = true;
             // 
             // buttonModelFindRefCollapse
             // 
-            buttonModelFindRefCollapse.Location = new Point(617, 259);
+            buttonModelFindRefCollapse.Location = new Point(911, 206);
             buttonModelFindRefCollapse.Name = "buttonModelFindRefCollapse";
             buttonModelFindRefCollapse.Size = new Size(94, 29);
             buttonModelFindRefCollapse.TabIndex = 7;
@@ -594,7 +605,7 @@
             // 
             // buttonModelFindRefExpand
             // 
-            buttonModelFindRefExpand.Location = new Point(617, 224);
+            buttonModelFindRefExpand.Location = new Point(911, 171);
             buttonModelFindRefExpand.Name = "buttonModelFindRefExpand";
             buttonModelFindRefExpand.Size = new Size(94, 29);
             buttonModelFindRefExpand.TabIndex = 6;
@@ -604,7 +615,7 @@
             // 
             // buttonModelFindRefReset
             // 
-            buttonModelFindRefReset.Location = new Point(617, 189);
+            buttonModelFindRefReset.Location = new Point(1001, 6);
             buttonModelFindRefReset.Name = "buttonModelFindRefReset";
             buttonModelFindRefReset.Size = new Size(94, 29);
             buttonModelFindRefReset.TabIndex = 5;
@@ -614,15 +625,15 @@
             // 
             // treeViewModelFindRef
             // 
-            treeViewModelFindRef.Location = new Point(6, 59);
+            treeViewModelFindRef.Location = new Point(300, 41);
             treeViewModelFindRef.Name = "treeViewModelFindRef";
-            treeViewModelFindRef.Size = new Size(605, 295);
+            treeViewModelFindRef.Size = new Size(605, 313);
             treeViewModelFindRef.TabIndex = 4;
             treeViewModelFindRef.NodeMouseDoubleClick += treeViewModelFindRef_NodeMouseDoubleClick;
             // 
             // buttonModelFindRef
             // 
-            buttonModelFindRef.Location = new Point(617, 25);
+            buttonModelFindRef.Location = new Point(1101, 6);
             buttonModelFindRef.Name = "buttonModelFindRef";
             buttonModelFindRef.Size = new Size(94, 29);
             buttonModelFindRef.TabIndex = 3;
@@ -632,25 +643,27 @@
             // 
             // textBoxModelFindRef
             // 
-            textBoxModelFindRef.Location = new Point(6, 26);
+            textBoxModelFindRef.Location = new Point(322, 8);
             textBoxModelFindRef.Name = "textBoxModelFindRef";
-            textBoxModelFindRef.Size = new Size(605, 27);
+            textBoxModelFindRef.Size = new Size(673, 27);
             textBoxModelFindRef.TabIndex = 2;
             // 
             // labelModelOpFindRef
             // 
-            labelModelOpFindRef.AutoSize = true;
-            labelModelOpFindRef.Location = new Point(6, 3);
+            labelModelOpFindRef.Location = new Point(6, 8);
             labelModelOpFindRef.Name = "labelModelOpFindRef";
-            labelModelOpFindRef.Size = new Size(310, 20);
+            labelModelOpFindRef.Size = new Size(310, 27);
             labelModelOpFindRef.TabIndex = 1;
             labelModelOpFindRef.Text = "Inserire una stringa per ricercarne i riferimenti";
+            labelModelOpFindRef.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // tabPageMapping
             // 
+            tabPageMapping.Controls.Add(textBoxMapModelMappingDefinition);
+            tabPageMapping.Controls.Add(textBoxMapModelMappingDescr);
             tabPageMapping.Controls.Add(comboBoxMapVers);
             tabPageMapping.Controls.Add(labelMapVersion);
-            tabPageMapping.Controls.Add(textBoxMapModelMapping);
+            tabPageMapping.Controls.Add(textBoxMapModelMappingName);
             tabPageMapping.Controls.Add(groupBoxMap);
             tabPageMapping.Controls.Add(buttonMapUpload);
             tabPageMapping.Controls.Add(textBoxMapFile);
@@ -659,36 +672,52 @@
             tabPageMapping.Location = new Point(4, 29);
             tabPageMapping.Name = "tabPageMapping";
             tabPageMapping.Padding = new Padding(3);
-            tabPageMapping.Size = new Size(1240, 739);
+            tabPageMapping.Size = new Size(1240, 749);
             tabPageMapping.TabIndex = 1;
             tabPageMapping.Text = "Mapping";
             tabPageMapping.UseVisualStyleBackColor = true;
             // 
+            // textBoxMapModelMappingDefinition
+            // 
+            textBoxMapModelMappingDefinition.Enabled = false;
+            textBoxMapModelMappingDefinition.Location = new Point(515, 66);
+            textBoxMapModelMappingDefinition.Name = "textBoxMapModelMappingDefinition";
+            textBoxMapModelMappingDefinition.Size = new Size(172, 27);
+            textBoxMapModelMappingDefinition.TabIndex = 11;
+            // 
+            // textBoxMapModelMappingDescr
+            // 
+            textBoxMapModelMappingDescr.Enabled = false;
+            textBoxMapModelMappingDescr.Location = new Point(898, 66);
+            textBoxMapModelMappingDescr.Name = "textBoxMapModelMappingDescr";
+            textBoxMapModelMappingDescr.Size = new Size(336, 27);
+            textBoxMapModelMappingDescr.TabIndex = 10;
+            // 
             // comboBoxMapVers
             // 
             comboBoxMapVers.FormattingEnabled = true;
-            comboBoxMapVers.Location = new Point(204, 64);
+            comboBoxMapVers.Location = new Point(132, 65);
             comboBoxMapVers.Name = "comboBoxMapVers";
-            comboBoxMapVers.Size = new Size(481, 28);
+            comboBoxMapVers.Size = new Size(377, 28);
             comboBoxMapVers.TabIndex = 8;
             comboBoxMapVers.SelectedIndexChanged += comboBoxMapVers_SelectedIndexChanged;
             // 
             // labelMapVersion
             // 
-            labelMapVersion.AutoSize = true;
-            labelMapVersion.Location = new Point(6, 67);
+            labelMapVersion.Location = new Point(6, 64);
             labelMapVersion.Name = "labelMapVersion";
-            labelMapVersion.Size = new Size(120, 20);
+            labelMapVersion.Size = new Size(120, 28);
             labelMapVersion.TabIndex = 7;
             labelMapVersion.Text = "Mapping version";
+            labelMapVersion.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // textBoxMapModelMapping
+            // textBoxMapModelMappingName
             // 
-            textBoxMapModelMapping.Enabled = false;
-            textBoxMapModelMapping.Location = new Point(691, 65);
-            textBoxMapModelMapping.Name = "textBoxMapModelMapping";
-            textBoxMapModelMapping.Size = new Size(308, 27);
-            textBoxMapModelMapping.TabIndex = 9;
+            textBoxMapModelMappingName.Enabled = false;
+            textBoxMapModelMappingName.Location = new Point(693, 66);
+            textBoxMapModelMappingName.Name = "textBoxMapModelMappingName";
+            textBoxMapModelMappingName.Size = new Size(199, 27);
+            textBoxMapModelMappingName.TabIndex = 9;
             // 
             // groupBoxMap
             // 
@@ -698,7 +727,7 @@
             groupBoxMap.Controls.Add(tabControlMap);
             groupBoxMap.Location = new Point(6, 98);
             groupBoxMap.Name = "groupBoxMap";
-            groupBoxMap.Size = new Size(1093, 635);
+            groupBoxMap.Size = new Size(1228, 645);
             groupBoxMap.TabIndex = 6;
             groupBoxMap.TabStop = false;
             groupBoxMap.Text = "Mapping";
@@ -709,9 +738,9 @@
             groupBoxMapBaseModel.Controls.Add(textBoxMapBaseModelVers);
             groupBoxMapBaseModel.Controls.Add(labelMapBaseModelVers);
             groupBoxMapBaseModel.Controls.Add(textBoxMapBaseModelSerial);
-            groupBoxMapBaseModel.Location = new Point(409, 26);
+            groupBoxMapBaseModel.Location = new Point(426, 26);
             groupBoxMapBaseModel.Name = "groupBoxMapBaseModel";
-            groupBoxMapBaseModel.Size = new Size(346, 190);
+            groupBoxMapBaseModel.Size = new Size(409, 190);
             groupBoxMapBaseModel.TabIndex = 22;
             groupBoxMapBaseModel.TabStop = false;
             groupBoxMapBaseModel.Text = "Model referenziato";
@@ -730,7 +759,7 @@
             textBoxMapBaseModelVers.Enabled = false;
             textBoxMapBaseModelVers.Location = new Point(83, 59);
             textBoxMapBaseModelVers.Name = "textBoxMapBaseModelVers";
-            textBoxMapBaseModelVers.Size = new Size(257, 27);
+            textBoxMapBaseModelVers.Size = new Size(320, 27);
             textBoxMapBaseModelVers.TabIndex = 20;
             // 
             // labelMapBaseModelVers
@@ -747,7 +776,7 @@
             textBoxMapBaseModelSerial.Enabled = false;
             textBoxMapBaseModelSerial.Location = new Point(73, 26);
             textBoxMapBaseModelSerial.Name = "textBoxMapBaseModelSerial";
-            textBoxMapBaseModelSerial.Size = new Size(267, 27);
+            textBoxMapBaseModelSerial.Size = new Size(330, 27);
             textBoxMapBaseModelSerial.TabIndex = 18;
             // 
             // groupBoxMapExtension
@@ -758,9 +787,9 @@
             groupBoxMapExtension.Controls.Add(labelMapExtension);
             groupBoxMapExtension.Controls.Add(labelMapExtensionVers);
             groupBoxMapExtension.Controls.Add(textBoxMapExtensionVers);
-            groupBoxMapExtension.Location = new Point(764, 26);
+            groupBoxMapExtension.Location = new Point(841, 26);
             groupBoxMapExtension.Name = "groupBoxMapExtension";
-            groupBoxMapExtension.Size = new Size(323, 190);
+            groupBoxMapExtension.Size = new Size(381, 190);
             groupBoxMapExtension.TabIndex = 22;
             groupBoxMapExtension.TabStop = false;
             groupBoxMapExtension.Text = "Mapping estensione";
@@ -770,7 +799,7 @@
             textBoxMapExtensionSerial.Enabled = false;
             textBoxMapExtensionSerial.Location = new Point(68, 59);
             textBoxMapExtensionSerial.Name = "textBoxMapExtensionSerial";
-            textBoxMapExtensionSerial.Size = new Size(251, 27);
+            textBoxMapExtensionSerial.Size = new Size(307, 27);
             textBoxMapExtensionSerial.TabIndex = 14;
             // 
             // labelMapExtensionSerial
@@ -787,7 +816,7 @@
             textBoxMapExtension.Enabled = false;
             textBoxMapExtension.Location = new Point(113, 26);
             textBoxMapExtension.Name = "textBoxMapExtension";
-            textBoxMapExtension.Size = new Size(204, 27);
+            textBoxMapExtension.Size = new Size(262, 27);
             textBoxMapExtension.TabIndex = 12;
             // 
             // labelMapExtension
@@ -813,7 +842,7 @@
             textBoxMapExtensionVers.Enabled = false;
             textBoxMapExtensionVers.Location = new Point(77, 92);
             textBoxMapExtensionVers.Name = "textBoxMapExtensionVers";
-            textBoxMapExtensionVers.Size = new Size(240, 27);
+            textBoxMapExtensionVers.Size = new Size(298, 27);
             textBoxMapExtensionVers.TabIndex = 7;
             // 
             // groupBoxMapInfo
@@ -830,7 +859,7 @@
             groupBoxMapInfo.Controls.Add(labelMapName);
             groupBoxMapInfo.Location = new Point(6, 26);
             groupBoxMapInfo.Name = "groupBoxMapInfo";
-            groupBoxMapInfo.Size = new Size(397, 190);
+            groupBoxMapInfo.Size = new Size(414, 190);
             groupBoxMapInfo.TabIndex = 5;
             groupBoxMapInfo.TabStop = false;
             groupBoxMapInfo.Text = "Info";
@@ -849,7 +878,7 @@
             textBoxMapVers.Enabled = false;
             textBoxMapVers.Location = new Point(94, 152);
             textBoxMapVers.Name = "textBoxMapVers";
-            textBoxMapVers.Size = new Size(292, 27);
+            textBoxMapVers.Size = new Size(314, 27);
             textBoxMapVers.TabIndex = 16;
             // 
             // labelMapSerial
@@ -866,7 +895,7 @@
             textBoxMapSerial.Enabled = false;
             textBoxMapSerial.Location = new Point(78, 119);
             textBoxMapSerial.Name = "textBoxMapSerial";
-            textBoxMapSerial.Size = new Size(308, 27);
+            textBoxMapSerial.Size = new Size(330, 27);
             textBoxMapSerial.TabIndex = 10;
             // 
             // labelMapProvider
@@ -883,7 +912,7 @@
             textBoxMapProvider.Enabled = false;
             textBoxMapProvider.Location = new Point(77, 86);
             textBoxMapProvider.Name = "textBoxMapProvider";
-            textBoxMapProvider.Size = new Size(309, 27);
+            textBoxMapProvider.Size = new Size(331, 27);
             textBoxMapProvider.TabIndex = 4;
             // 
             // textBoxMapDescr
@@ -891,7 +920,7 @@
             textBoxMapDescr.Enabled = false;
             textBoxMapDescr.Location = new Point(94, 53);
             textBoxMapDescr.Name = "textBoxMapDescr";
-            textBoxMapDescr.Size = new Size(292, 27);
+            textBoxMapDescr.Size = new Size(314, 27);
             textBoxMapDescr.TabIndex = 3;
             // 
             // labelMapDescr
@@ -908,7 +937,7 @@
             textBoxMapName.Enabled = false;
             textBoxMapName.Location = new Point(62, 20);
             textBoxMapName.Name = "textBoxMapName";
-            textBoxMapName.Size = new Size(324, 27);
+            textBoxMapName.Size = new Size(346, 27);
             textBoxMapName.TabIndex = 1;
             // 
             // labelMapName
@@ -927,66 +956,158 @@
             tabControlMap.Location = new Point(6, 222);
             tabControlMap.Name = "tabControlMap";
             tabControlMap.SelectedIndex = 0;
-            tabControlMap.Size = new Size(1081, 407);
+            tabControlMap.Size = new Size(1216, 417);
             tabControlMap.TabIndex = 4;
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(pictureBoxMapFindRefBinding);
+            tabPage1.Controls.Add(buttonMapFindRefReset);
+            tabPage1.Controls.Add(textBoxMapFindRefBindings);
+            tabPage1.Controls.Add(labelMapFindRefBindings);
+            tabPage1.Controls.Add(labelMapFindRefExpression);
+            tabPage1.Controls.Add(textBoxMapFindRefExpression);
+            tabPage1.Controls.Add(labelMapFindRefBinding);
+            tabPage1.Controls.Add(labelMapFindRefDatasource);
             tabPage1.Controls.Add(treeViewMapFindRefBinding);
             tabPage1.Controls.Add(treeViewMapFindRefDatasource);
-            tabPage1.Controls.Add(buttonMapFinndRef);
+            tabPage1.Controls.Add(buttonMapFindRef);
             tabPage1.Controls.Add(textBoxMapFindRef);
             tabPage1.Controls.Add(labelMapFindRef);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1073, 374);
+            tabPage1.Size = new Size(1208, 384);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Trova riferimenti";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // pictureBoxMapFindRefBinding
+            // 
+            pictureBoxMapFindRefBinding.BackgroundImageLayout = ImageLayout.None;
+            pictureBoxMapFindRefBinding.Location = new Point(559, 115);
+            pictureBoxMapFindRefBinding.Name = "pictureBoxMapFindRefBinding";
+            pictureBoxMapFindRefBinding.Size = new Size(73, 49);
+            pictureBoxMapFindRefBinding.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxMapFindRefBinding.TabIndex = 13;
+            pictureBoxMapFindRefBinding.TabStop = false;
+            // 
+            // buttonMapFindRefReset
+            // 
+            buttonMapFindRefReset.Location = new Point(1008, 3);
+            buttonMapFindRefReset.Name = "buttonMapFindRefReset";
+            buttonMapFindRefReset.Size = new Size(94, 29);
+            buttonMapFindRefReset.TabIndex = 12;
+            buttonMapFindRefReset.Text = "Reset";
+            buttonMapFindRefReset.UseVisualStyleBackColor = true;
+            buttonMapFindRefReset.Click += buttonMapFindRefReset_Click;
+            // 
+            // textBoxMapFindRefBindings
+            // 
+            textBoxMapFindRefBindings.Location = new Point(422, 82);
+            textBoxMapFindRefBindings.Name = "textBoxMapFindRefBindings";
+            textBoxMapFindRefBindings.Size = new Size(356, 27);
+            textBoxMapFindRefBindings.TabIndex = 11;
+            // 
+            // labelMapFindRefBindings
+            // 
+            labelMapFindRefBindings.Location = new Point(423, 59);
+            labelMapFindRefBindings.Name = "labelMapFindRefBindings";
+            labelMapFindRefBindings.Size = new Size(356, 20);
+            labelMapFindRefBindings.TabIndex = 10;
+            labelMapFindRefBindings.Text = "Binding";
+            labelMapFindRefBindings.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // labelMapFindRefExpression
+            // 
+            labelMapFindRefExpression.Location = new Point(423, 178);
+            labelMapFindRefExpression.Name = "labelMapFindRefExpression";
+            labelMapFindRefExpression.Size = new Size(356, 20);
+            labelMapFindRefExpression.TabIndex = 9;
+            labelMapFindRefExpression.Text = "Formula";
+            labelMapFindRefExpression.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // textBoxMapFindRefExpression
+            // 
+            textBoxMapFindRefExpression.Location = new Point(422, 201);
+            textBoxMapFindRefExpression.Multiline = true;
+            textBoxMapFindRefExpression.Name = "textBoxMapFindRefExpression";
+            textBoxMapFindRefExpression.Size = new Size(356, 177);
+            textBoxMapFindRefExpression.TabIndex = 8;
+            // 
+            // labelMapFindRefBinding
+            // 
+            labelMapFindRefBinding.Location = new Point(785, 36);
+            labelMapFindRefBinding.Name = "labelMapFindRefBinding";
+            labelMapFindRefBinding.Size = new Size(417, 20);
+            labelMapFindRefBinding.TabIndex = 7;
+            labelMapFindRefBinding.Text = "Binding con riferimenti attivi";
+            labelMapFindRefBinding.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelMapFindRefDatasource
+            // 
+            labelMapFindRefDatasource.Location = new Point(6, 36);
+            labelMapFindRefDatasource.Name = "labelMapFindRefDatasource";
+            labelMapFindRefDatasource.Size = new Size(411, 20);
+            labelMapFindRefDatasource.TabIndex = 6;
+            labelMapFindRefDatasource.Text = "Data source con riferimenti attivi";
+            labelMapFindRefDatasource.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // treeViewMapFindRefBinding
             // 
-            treeViewMapFindRefBinding.Location = new Point(361, 59);
+            treeViewMapFindRefBinding.Location = new Point(785, 59);
             treeViewMapFindRefBinding.Name = "treeViewMapFindRefBinding";
-            treeViewMapFindRefBinding.Size = new Size(346, 309);
+            treeViewMapFindRefBinding.Size = new Size(417, 319);
             treeViewMapFindRefBinding.TabIndex = 5;
+            treeViewMapFindRefBinding.NodeMouseClick += treeViewMapFindRefBinding_NodeMouseClick;
             // 
             // treeViewMapFindRefDatasource
             // 
             treeViewMapFindRefDatasource.Location = new Point(6, 59);
             treeViewMapFindRefDatasource.Name = "treeViewMapFindRefDatasource";
-            treeViewMapFindRefDatasource.Size = new Size(349, 309);
+            treeViewMapFindRefDatasource.Size = new Size(411, 319);
             treeViewMapFindRefDatasource.TabIndex = 4;
+            treeViewMapFindRefDatasource.NodeMouseClick += treeViewMapFindRefDatasource_NodeMouseClick;
             // 
-            // buttonMapFinndRef
+            // buttonMapFindRef
             // 
-            buttonMapFinndRef.Location = new Point(973, 26);
-            buttonMapFinndRef.Name = "buttonMapFinndRef";
-            buttonMapFinndRef.Size = new Size(94, 29);
-            buttonMapFinndRef.TabIndex = 3;
-            buttonMapFinndRef.Text = "Ricerca";
-            buttonMapFinndRef.UseVisualStyleBackColor = true;
+            buttonMapFindRef.Location = new Point(1108, 3);
+            buttonMapFindRef.Name = "buttonMapFindRef";
+            buttonMapFindRef.Size = new Size(94, 29);
+            buttonMapFindRef.TabIndex = 3;
+            buttonMapFindRef.Text = "Ricerca";
+            buttonMapFindRef.UseVisualStyleBackColor = true;
+            buttonMapFindRef.Click += buttonMapFindRef_Click;
             // 
             // textBoxMapFindRef
             // 
-            textBoxMapFindRef.Location = new Point(6, 26);
+            textBoxMapFindRef.Location = new Point(361, 3);
             textBoxMapFindRef.Name = "textBoxMapFindRef";
-            textBoxMapFindRef.Size = new Size(961, 27);
+            textBoxMapFindRef.Size = new Size(641, 27);
             textBoxMapFindRef.TabIndex = 2;
             // 
             // labelMapFindRef
             // 
-            labelMapFindRef.AutoSize = true;
-            labelMapFindRef.Location = new Point(9, 6);
+            labelMapFindRef.Location = new Point(6, 3);
             labelMapFindRef.Name = "labelMapFindRef";
-            labelMapFindRef.Size = new Size(310, 20);
+            labelMapFindRef.Size = new Size(349, 27);
             labelMapFindRef.TabIndex = 1;
             labelMapFindRef.Text = "Inserire una stringa per ricercarne i riferimenti";
+            labelMapFindRef.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Location = new Point(4, 29);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(1208, 384);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Riferimenti inutili";
+            tabPage2.UseVisualStyleBackColor = true;
             // 
             // buttonMapUpload
             // 
-            buttonMapUpload.Location = new Point(1005, 28);
+            buttonMapUpload.Location = new Point(1140, 28);
             buttonMapUpload.Name = "buttonMapUpload";
             buttonMapUpload.Size = new Size(94, 27);
             buttonMapUpload.TabIndex = 5;
@@ -998,7 +1119,7 @@
             // 
             textBoxMapFile.Location = new Point(106, 28);
             textBoxMapFile.Name = "textBoxMapFile";
-            textBoxMapFile.Size = new Size(893, 27);
+            textBoxMapFile.Size = new Size(1028, 27);
             textBoxMapFile.TabIndex = 4;
             // 
             // buttonMapBrowse
@@ -1030,7 +1151,7 @@
             tabPageFormat.Location = new Point(4, 29);
             tabPageFormat.Name = "tabPageFormat";
             tabPageFormat.Padding = new Padding(3);
-            tabPageFormat.Size = new Size(1240, 739);
+            tabPageFormat.Size = new Size(1240, 749);
             tabPageFormat.TabIndex = 2;
             tabPageFormat.Text = "Format";
             tabPageFormat.UseVisualStyleBackColor = true;
@@ -1523,16 +1644,6 @@
             labelFormat.TabIndex = 2;
             labelFormat.Text = "Selezionare il file .xml di un file relativo ad un Format di un GER";
             // 
-            // tabPage2
-            // 
-            tabPage2.Location = new Point(4, 29);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1073, 374);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "Riferimenti inutili";
-            tabPage2.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1568,6 +1679,7 @@
             tabControlMap.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxMapFindRefBinding).EndInit();
             tabPageFormat.ResumeLayout(false);
             tabPageFormat.PerformLayout();
             groupBoxFormat.ResumeLayout(false);
@@ -1631,7 +1743,7 @@
         private TabControl tabControlMap;
         private TabPage tabPage1;
         private TreeView treeViewMapFindRefDatasource;
-        private Button buttonMapFinndRef;
+        private Button buttonMapFindRef;
         private TextBox textBoxMapFindRef;
         private Label labelMapFindRef;
         private Button buttonFormatBrowse;
@@ -1661,7 +1773,7 @@
         private TreeView treeViewFormatFindRefMap;
         private Button buttonFormatRebase;
         private Button buttonFormatUpload;
-        private TextBox textBoxMapModelMapping;
+        private TextBox textBoxMapModelMappingName;
         private Button buttonModelFindRefReset;
         private Button buttonModelFindRefCollapse;
         private Button buttonModelFindRefExpand;
@@ -1728,5 +1840,15 @@
         private Label labelFormatExtension;
         private Button buttonFormatExtensionImport;
         private TabPage tabPage2;
+        private TextBox textBoxMapModelMappingDescr;
+        private Label labelMapFindRefBinding;
+        private Label labelMapFindRefDatasource;
+        private TextBox textBoxMapModelMappingDefinition;
+        private Label labelMapFindRefExpression;
+        private TextBox textBoxMapFindRefExpression;
+        private Label labelMapFindRefBindings;
+        private TextBox textBoxMapFindRefBindings;
+        private Button buttonMapFindRefReset;
+        private PictureBox pictureBoxMapFindRefBinding;
     }
 }

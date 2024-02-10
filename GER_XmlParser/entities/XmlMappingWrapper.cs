@@ -19,15 +19,15 @@ namespace GER_XmlParser.entities
         public const string VERSIONS_ID_NODES_XPATH = @"/ERSolutionVersion/Contents./ERModelMappingVersion/@ID.";
         public static Func<string, string> DATASOURCE_NODE_XPATH = (string id) => { return string.Format(@"/ERSolutionVersion/Contents./ERModelMappingVersion[@ID.='{0}']/Mapping/ERModelMapping/Datasource/ERModelDefinition/Contents.", id); };
         public static Func<string, string> BINDING_NODE_XPATH = (string id) => { return string.Format(@"/ERSolutionVersion/Contents./ERModelMappingVersion[@ID.='{0}']/Mapping/ERModelMapping/Binding/ERDataContainerBinding/Contents.", id); };
-        public static Func<string, string> VERSION_NODE1_XPATH = (string id) => { return string.Format(@"/ERSolutionVersion/Contents./ERModelMappingVersion[@ID.='{0}']", id); };
-        public static Func<string, string> VERSION_NODE2_XPATH = (string id) => { return string.Format(@"/ERSolutionVersion/Contents./ERModelMappingVersion[@ID.='{0}']/Mapping/ERModelMapping", id); };
+        public static Func<string, string> XPATH_ERMODELMAPPINGVERSION = (string id) => { return string.Format(@"/ERSolutionVersion/Contents./ERModelMappingVersion[@ID.='{0}']", id); };
+        public static Func<string, string> XPATH_ERMODELMAPPING = (string id) => { return string.Format(@"/ERSolutionVersion/Contents./ERModelMappingVersion[@ID.='{0}']/Mapping/ERModelMapping", id); };
         protected XmlNode _baseSolutionNode;
         protected List<XmlNode> _nodesMappingVersion;
         protected XmlNode _nodeERSolutionVersion;
         protected XmlNode _nodeBaseERSoLution;
         protected XmlNode _vendorNode;
-        protected XmlNode _versionNode1;
-        protected XmlNode _versionNode2;
+        protected XmlNode _nodeModelMappingVersion;
+        protected XmlNode _nodeModelMapping;
         protected XmlNode _datasourceNode;
         protected XmlNode _bindingNode;
         protected List<string> _idMappingVersions;
@@ -35,18 +35,21 @@ namespace GER_XmlParser.entities
         protected string _description;
         protected string _publicVersionNumber;
         protected string _vendor;
+        protected string _mappingDefinition;
         protected string _mappingName;
+        protected string _mappingDescription;
         protected GERIdentifier _identifier;
         protected GERIdentifier _baseModelIdentifier;
         protected GERIdentifier _baseMappingIdentifier;
+        protected Dictionary<string, string> _labels;
         // PROPERTIES
         public XmlNode BaseSolutionNode { get { return this._baseSolutionNode; } }
         public List<XmlNode> NodesMappingVersion { get { return this._nodesMappingVersion; } }
         public XmlNode NodeERSolutionVersion { get { return this._nodeERSolutionVersion; } }
         public XmlNode NodeBaseERSolution { get { return this._nodeBaseERSoLution; } }
         public XmlNode VendorNode { get { return this._vendorNode; } }
-        public XmlNode VersionNode1 { get { return this._versionNode1; } }
-        public XmlNode VersionNode2 { get { return this._versionNode2; } }
+        public XmlNode NodeModelMappingVersion { get { return this._nodeModelMappingVersion; } }
+        public XmlNode NodeModelMapping { get { return this._nodeModelMapping; } }
         public XmlNode DatasourceNode { get { return this._datasourceNode; } }
         public XmlNode BindingNode { get { return this._bindingNode; } }
         public List<string> IdMappingVersions { get { return this._idMappingVersions; } }
@@ -54,10 +57,13 @@ namespace GER_XmlParser.entities
         public string Description { get { return this._description; } }
         public string PublicVersionNumber { get { return this._publicVersionNumber; } }
         public string Vendor { get { return this._vendor; } }
+        public string MappingDefinition { get { return this._mappingDefinition; } }
         public string MappingName { get { return this._mappingName; } }
+        public string MappingDescription { get { return this._mappingDescription; } }
         public GERIdentifier Identifier { get { return this._identifier; } }
         public GERIdentifier BaseModelIdentifier { get { return this._baseModelIdentifier; } }
         public GERIdentifier BaseMappingIdentifier { get { return this._baseMappingIdentifier; } }
+        public Dictionary<string, string> Labels;
         public bool IsBaseModelComputable { get { return this.BaseModelIdentifier != null; } }
         public bool Extension { get { return this.BaseMappingIdentifier != null; } }
 
@@ -81,7 +87,7 @@ namespace GER_XmlParser.entities
             }
 
             this.SetMappingVersion(this.IdMappingVersions[0]);
-            if ((this.DatasourceNode == null) || (this.BindingNode == null) || (this.VersionNode1 == null) || (this.VersionNode2 == null))
+            if ((this.DatasourceNode == null) || (this.BindingNode == null) || (this.NodeModelMappingVersion == null) || (this.NodeModelMapping == null))
             {
                 throw new InvalidMappingException(string.Format("File individuato dal percorso '{0}' non valido come Mapping", filePath));
             }
@@ -107,40 +113,79 @@ namespace GER_XmlParser.entities
             }
 
             //
-            temp = this.NodeERSolutionVersion.Attributes["PublicVersionNumber"];
-            if (temp == null) this._publicVersionNumber = "";
-            else this._publicVersionNumber = temp.Value;
+            temp = this.BaseSolutionNode.Attributes["Name"];
+            if (temp == null) this._name = "";
+            else this._name = temp.Value;
             //
             temp = this.NodeERSolutionVersion.Attributes["Description"];
             if (temp == null) this._description = "";
             else this._description = temp.Value;
             //
+            temp = this.NodeERSolutionVersion.Attributes["PublicVersionNumber"];
+            if (temp == null) this._publicVersionNumber = "";
+            else this._publicVersionNumber = temp.Value;
+            //
             temp = this.NodeBaseERSolution.Attributes["Name"];
             if (temp == null) _name = "";
             else this._name = temp.Value;
-            //
-            temp = this.VendorNode.Attributes["Name"];
-            if (temp == null) this._vendor = "";
-            else this._vendor = temp.Value;
         }
 
         // METHODS
+        //[contains-ignore-case(@Name, '{0}')] <--> [matches(@Name, '{0}', 'i')] in XPath2.0
         public void SetMappingVersion(string idMappingVersion)
         {
+            this._nodeERSolutionVersion = this.ComputeFirstXPath1(XPATH_ERSOLUTIONVERSION);
+            this._baseSolutionNode = this.ComputeFirstXPath1(XPATH_BASE_ERSOLUTION);
             this._datasourceNode = this.ComputeFirstXPath1(DATASOURCE_NODE_XPATH(idMappingVersion));
             this._bindingNode = this.ComputeFirstXPath1(BINDING_NODE_XPATH(idMappingVersion));
-            this._versionNode1 = this.ComputeFirstXPath1(VERSION_NODE1_XPATH(idMappingVersion));
-            this._versionNode2 = this.ComputeFirstXPath1(VERSION_NODE2_XPATH(idMappingVersion));
+            this._nodeModelMappingVersion = this.ComputeFirstXPath1(XPATH_ERMODELMAPPINGVERSION(idMappingVersion));
+            this._nodeModelMapping = this.ComputeFirstXPath1(XPATH_ERMODELMAPPING(idMappingVersion));
 
             XmlAttribute temp;
             //
-            temp = this.VersionNode1.Attributes["Description"];
-            if (temp == null) this._description = "";
-            else this._description = temp.Value;
+            temp = this.NodeModelMapping.Attributes["DataContainerDescriptor"];
+            if (temp == null) this._mappingDefinition = "";
+            else this._mappingDefinition = temp.Value;
+            
             //
-            temp = this.VersionNode2.Attributes["DataContainerDescriptor"];
+            temp = this.NodeModelMapping.Attributes["Description"];
+            if (temp == null) this._mappingDescription = "";
+            else this._mappingDescription = temp.Value;
+            //
+            temp = this.NodeModelMapping.Attributes["Name"];
             if (temp == null) this._mappingName = "";
             else this._mappingName = temp.Value;
+        }
+        public void ParseLabelsFromModel(XmlModelFileWrapper modelWrapper)
+        {
+            foreach (string labelId in modelWrapper.Labels.Keys)
+            {
+                this.Labels.Add(labelId, modelWrapper.Labels[labelId]);
+            }
+        }
+
+        public Tuple<MyTree<MappingDatasourcePair>, MyTree<MappingBindingPair>> FindEntireMappingContents(Dictionary<string, string> labels)
+        {
+            string xPathDatasource = @".//ERModelItemDefinition/ValueDefinition/ERModelItemValueDefinition";
+            List<XmlNode> nodesDatasource = this.ComputeXPath1(this.DatasourceNode, xPathDatasource);
+
+            string xPathBinding = @".//ERDataContainerPathBinding/Expression/ERExpressionStringItemValue";
+            List<XmlNode> nodesBinding = this.ComputeXPath1(this.BindingNode, xPathBinding);
+
+            return MyTree<string>.ComputeFromMappingFindRef(nodesDatasource, this.DatasourceNode, nodesBinding, this.BindingNode, labels);
+        }
+
+        public Tuple<MyTree<MappingDatasourcePair>, MyTree<MappingBindingPair>> FindReferences(string input, Dictionary<string, string> labels)
+        {
+            //string xPathDatasource = string.Format(@".//ERModelItemDefinition/ValueDefinition/ERModelItemValueDefinition[contains(@Name, '{0}')]", input);
+            string xPathDatasource = string.Format(@".//ERModelItemDefinition/ValueDefinition/ERModelItemValueDefinition[matches(@Name, '{0}', 'i')]", input);
+            List<XmlNode> nodesDatasource = this.ComputeXPath2(this.DatasourceNode, xPathDatasource);
+
+            //string xPathBinding = string.Format(@".//ERDataContainerPathBinding[contains(@Path, '{0}')]/Expression/ERExpressionStringItemValue", input);
+            string xPathBinding = string.Format(@".//ERDataContainerPathBinding[matches(@Path, '{0}', 'i')]/Expression/ERExpressionStringItemValue", input);
+            List<XmlNode> nodesBinding = this.ComputeXPath2(this.BindingNode, xPathBinding);
+
+            return MyTree<string>.ComputeFromMappingFindRef(nodesDatasource, this.DatasourceNode, nodesBinding, this.BindingNode, labels);
         }
     }
 }

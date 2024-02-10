@@ -1,8 +1,10 @@
 using System.Data;
+using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Xml;
 using GER_XmlParser.entities;
+using GER_XmlParser.enums;
 using GER_XmlParser.ui;
 using GER_XmlParser.utils;
 
@@ -12,6 +14,27 @@ namespace GER_XmlParser
     {
         #region FIELDS
         protected static Func<MyTreeNode<XmlNode>, TreeNode> TRANSLATE_TREENODES = delegate (MyTreeNode<XmlNode> myNode)
+        {
+            TreeNode newNode = new TreeNode();
+            newNode.Text = myNode.DisplayText;
+            newNode.Tag = myNode;
+            return newNode;
+        };
+        protected static Func<MyTreeNode<string>, TreeNode> TRANSLATE_STRING_TREENODES = delegate (MyTreeNode<string> myNode)
+        {
+            TreeNode newNode = new TreeNode();
+            newNode.Text = myNode.DisplayText;
+            newNode.Tag = myNode;
+            return newNode;
+        };
+        protected static Func<MyTreeNode<MappingBindingPair>, TreeNode> TRANSLATE_MAP_BINDING_TREENODES = delegate (MyTreeNode<MappingBindingPair> myNode)
+        {
+            TreeNode newNode = new TreeNode();
+            newNode.Text = myNode.DisplayText;
+            newNode.Tag = myNode;
+            return newNode;
+        };
+        protected static Func<MyTreeNode<MappingDatasourcePair>, TreeNode> TRANSLATE_MAP_DATASOURCE_TREENODES = delegate (MyTreeNode<MappingDatasourcePair> myNode)
         {
             TreeNode newNode = new TreeNode();
             newNode.Text = myNode.DisplayText;
@@ -130,6 +153,34 @@ namespace GER_XmlParser
                 this.textBoxMapExtensionSerial.Text = "";
                 this.textBoxMapExtensionVers.Text = "";
             }
+        }
+
+        protected void UpdateMappingVersion()
+        {
+            string selectedIdMap = this.comboBoxMapVers.SelectedItem as string;
+            if (!string.IsNullOrEmpty(selectedIdMap)) this.MappingWrapper.SetMappingVersion(selectedIdMap);
+            this.textBoxMapModelMappingDefinition.Text = this.MappingWrapper.MappingDefinition;
+            this.textBoxMapModelMappingName.Text = this.MappingWrapper.MappingName;
+            this.textBoxMapModelMappingDescr.Text = this.MappingWrapper.MappingDescription;
+            Dictionary<string, string> labels;
+            if (this.ModelWrapper == null) labels = new Dictionary<string, string>();
+            else labels = this.ModelWrapper.Labels;
+
+            Tuple<MyTree<MappingDatasourcePair>, MyTree<MappingBindingPair>> tuple = this.MappingWrapper.FindEntireMappingContents(labels);
+            MyTree<MappingDatasourcePair> myTreeDatasource = tuple.Item1;
+            MyTree<MappingBindingPair> myTreeBinding = tuple.Item2;
+
+            this.treeViewMapFindRefDatasource.Nodes.Clear();
+            myTreeDatasource.PopulateTreeViewControl(this.treeViewMapFindRefDatasource, TRANSLATE_MAP_DATASOURCE_TREENODES);
+            this.treeViewMapFindRefBinding.Nodes.Clear();
+            myTreeBinding.PopulateTreeViewControl(this.treeViewMapFindRefBinding, TRANSLATE_MAP_BINDING_TREENODES);
+        }
+
+        protected void SetMappingFindReferencesArrowOrientation(ArrowOrientation orientation)
+        {
+            if (orientation == ArrowOrientation.NONE) this.pictureBoxMapFindRefBinding.Image = null;
+            else if (orientation == ArrowOrientation.LEFT) this.pictureBoxMapFindRefBinding.Image = Properties.Resources.arrow_left;
+            else if (orientation == ArrowOrientation.RIGHT) this.pictureBoxMapFindRefBinding.Image = Properties.Resources.arrow_right;
         }
         #endregion
 
@@ -334,15 +385,61 @@ namespace GER_XmlParser
 
         private void comboBoxMapVers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedIdMap = this.comboBoxMapVers.SelectedItem as string;
-            if (!string.IsNullOrEmpty(selectedIdMap)) this.MappingWrapper.SetMappingVersion(selectedIdMap);
-            this.textBoxMapDescr.Text = this.MappingWrapper.Description;
-            this.textBoxMapModelMapping.Text = this.MappingWrapper.MappingName;
+            this.UpdateMappingVersion();
         }
 
         private void buttonMapUpload_Click(object sender, EventArgs e)
         {
             this.ImportMapping();
+        }
+
+        private void treeViewMapFindRefDatasource_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            MyTreeNode<MappingDatasourcePair> myTreeNode = e.Node.Tag as MyTreeNode<MappingDatasourcePair>;
+            this.textBoxMapFindRefExpression.Text = myTreeNode.Content.Expression;
+            this.textBoxMapFindRefBindings.Text = myTreeNode.Content.BindingPath;
+            this.SetMappingFindReferencesArrowOrientation(ArrowOrientation.RIGHT);
+        }
+
+        private void treeViewMapFindRefBinding_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            MyTreeNode<MappingBindingPair> myTreeNode = e.Node.Tag as MyTreeNode<MappingBindingPair>;
+            this.textBoxMapFindRefExpression.Text = "";
+            this.textBoxMapFindRefBindings.Text = myTreeNode.Content.DatasourcePath;
+            this.SetMappingFindReferencesArrowOrientation(ArrowOrientation.LEFT);
+        }
+
+        private void buttonMapFindRefReset_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, string> labels;
+            if (this.ModelWrapper == null) labels = new Dictionary<string, string>();
+            else labels = this.ModelWrapper.Labels;
+
+            Tuple<MyTree<MappingDatasourcePair>, MyTree<MappingBindingPair>> tuple = this.MappingWrapper.FindEntireMappingContents(labels);
+            MyTree<MappingDatasourcePair> myTreeDatasource = tuple.Item1;
+            MyTree<MappingBindingPair> myTreeBinding = tuple.Item2;
+            this.treeViewMapFindRefBinding.Nodes.Clear();
+            this.treeViewMapFindRefDatasource.Nodes.Clear();
+            myTreeDatasource.PopulateTreeViewControl(this.treeViewMapFindRefDatasource, TRANSLATE_MAP_DATASOURCE_TREENODES);
+            myTreeBinding.PopulateTreeViewControl(this.treeViewMapFindRefBinding, TRANSLATE_MAP_BINDING_TREENODES);
+            this.textBoxMapFindRef.Text = "";
+            this.SetMappingFindReferencesArrowOrientation(ArrowOrientation.NONE);
+        }
+
+        private void buttonMapFindRef_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, string> labels;
+            if (this.ModelWrapper == null) labels = new Dictionary<string, string>();
+            else labels = this.ModelWrapper.Labels;
+
+            Tuple<MyTree<MappingDatasourcePair>, MyTree<MappingBindingPair>> tuple = this.MappingWrapper.FindReferences(this.textBoxMapFindRef.Text, labels);
+            MyTree<MappingDatasourcePair> myTreeDatasource = tuple.Item1;
+            MyTree<MappingBindingPair> myTreeBinding = tuple.Item2;
+
+            this.treeViewMapFindRefDatasource.Nodes.Clear();
+            myTreeDatasource.PopulateTreeViewControl(this.treeViewMapFindRefDatasource, TRANSLATE_MAP_DATASOURCE_TREENODES);
+            this.treeViewMapFindRefBinding.Nodes.Clear();
+            myTreeBinding.PopulateTreeViewControl(this.treeViewMapFindRefBinding, TRANSLATE_MAP_BINDING_TREENODES);
         }
         #endregion
 
