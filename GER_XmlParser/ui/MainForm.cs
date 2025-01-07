@@ -4,6 +4,8 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Xml;
 using GER_XmlParser.entities;
+using GER_XmlParser.entities.wrappers.data;
+using GER_XmlParser.entities.wrappers.file;
 using GER_XmlParser.enums;
 using GER_XmlParser.ui;
 using GER_XmlParser.utils;
@@ -41,11 +43,18 @@ namespace GER_XmlParser
             newNode.Tag = myNode;
             return newNode;
         };
+        protected static Func<MyTreeNode<FormatPair>, TreeNode> TRANSLATE_FORMAT_TREENODES = delegate (MyTreeNode<FormatPair> myNode)
+        {
+            TreeNode newNode = new TreeNode();
+            newNode.Text = myNode.DisplayText;
+            newNode.Tag = myNode;
+            return newNode;
+        };
         #endregion
         #region PROPERTIES
         public XmlModelFileWrapper ModelWrapper { get; set; }
         public XmlModelFileWrapper ReferencedModelWrapper { get; set; }
-        public XmlMappingWrapper MappingWrapper { get; set; }
+        public XmlMappingFileWrapper MappingWrapper { get; set; }
         public XmlFormatFileWrapper FormatWrapper { get; set; }
         public XmlFormatFileWrapper ReferencedFormatWrapper { get; set; }
         protected static Color SUCCESS = Color.LightGreen;
@@ -108,7 +117,7 @@ namespace GER_XmlParser
         {
             try
             {
-                this.MappingWrapper = new XmlMappingWrapper(this.textBoxMapFile.Text);
+                this.MappingWrapper = new XmlMappingFileWrapper(this.textBoxMapFile.Text);
             }
             catch (Exception)
             {
@@ -230,6 +239,10 @@ namespace GER_XmlParser
                 this.textBoxFormatBaseFormatSerial.Text = "";
                 this.textBoxFormatBaseFormatVers.Text = "";
             }
+
+            MyTree<FormatPair> myTree = this.FormatWrapper.FindEntireFormatContents();
+            this.treeViewFormatFindRef.Nodes.Clear();
+            myTree.PopulateTreeViewControl(this.treeViewFormatFindRef, TRANSLATE_FORMAT_TREENODES);
         }
         #endregion
 

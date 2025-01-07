@@ -1,4 +1,5 @@
-﻿using GER_XmlParser.enums;
+﻿using GER_XmlParser.entities.wrappers.file;
+using GER_XmlParser.enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -161,6 +162,45 @@ namespace GER_XmlParser.utils
                 }
                 if (result != "") result += string.Format(@"({0})", attrName);
                 else result += attrName;
+            }
+            return result;
+        }
+
+        public static string StringifyAsFormat(XmlNode node, Dictionary<string, string> labels)
+        {
+            string result = "";
+            if (node.Attributes == null) throw new ArgumentException("Non dovrebbe essere possibile");
+            else
+            {
+                string attrName = null;
+                if (node.Attributes["Name"] != null) attrName = node.Attributes["Name"].Value;
+                string attrLabel = null;
+                if (node.Attributes["Label"] != null) attrLabel = node.Attributes["Label"].Value;
+
+                if (attrLabel != null)
+                {
+                    if (attrLabel.StartsWith("@"))
+                    {
+                        try
+                        {
+                            result += labels[attrLabel.Replace("@GER_LABEL:", "")];
+                        }
+                        catch (KeyNotFoundException)
+                        {
+                            //
+                        }
+                    }
+                    else
+                    {
+                        result += attrLabel;
+                    }
+                }
+                if (result != "") result += string.Format(@"({0})", attrName);
+                else
+                {
+                    if (attrName == null) result += XmlFormatFileWrapper.TranslateXmlNodeValueToMyTreeNode(node);
+                    else result += attrName;
+                }
             }
             return result;
         }

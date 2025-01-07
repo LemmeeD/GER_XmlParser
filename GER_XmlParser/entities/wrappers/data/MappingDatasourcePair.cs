@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GER_XmlParser.entities
+namespace GER_XmlParser.entities.wrappers.data
 {
     public class MappingDatasourcePair : MappingPair
     {
@@ -16,16 +16,16 @@ namespace GER_XmlParser.entities
         // CONTRUCTORS
         public MappingDatasourcePair(string path, string bindingPath)
         {
-            this._path = path;
-            this.BindingPath = bindingPath;
-            this.Expression = "";
+            _path = path;
+            BindingPath = bindingPath;
+            Expression = "";
         }
 
         public MappingDatasourcePair(string path, string bindingPath, string expression)
         {
-            this._path = path;
-            this.BindingPath = bindingPath;
-            this.Expression = expression;
+            _path = path;
+            BindingPath = bindingPath;
+            Expression = expression;
         }
 
         // METHODS

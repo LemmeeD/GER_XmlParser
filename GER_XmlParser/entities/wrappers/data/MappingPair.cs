@@ -4,21 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GER_XmlParser.entities
+namespace GER_XmlParser.entities.wrappers.data
 {
     public abstract class MappingPair
     {
         //FIELDS
         protected string _path;
         // PROPERTIES
-        public string Path { get { return this._path; } }
+        public string Path { get { return _path; } }
 
         // CONTRUCTORS
 
         // METHODS
         public override string ToString()
         {
-            return this.Path.ToString();
+            return Path.ToString();
         }
 
         public override bool Equals(object obj)
@@ -27,14 +27,14 @@ namespace GER_XmlParser.entities
             else if (obj is MappingPair)
             {
                 MappingPair that = obj as MappingPair;
-                return (this.Path.Equals(that.Path));
+                return Path.Equals(that.Path);
             }
             else return false;
         }
 
         public override int GetHashCode()
         {
-            return this.Path.GetHashCode();
+            return Path.GetHashCode();
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GER_XmlParser.entities
+namespace GER_XmlParser.entities.wrappers.data
 {
     public class MappingBindingPair : MappingPair
     {
@@ -12,21 +12,21 @@ namespace GER_XmlParser.entities
         protected string _expression;
         // PROPERTIES
         public string DatasourcePath { get; set; }
-        public string Expression { get { return this._expression == null ? "" : this._expression; } }
+        public string Expression { get { return _expression == null ? "" : _expression; } }
 
         // CONTRUCTORS
         public MappingBindingPair(string path, string datasourcePath)
         {
-            this._path = path;
-            this.DatasourcePath = datasourcePath;
-            this._expression = null;
+            _path = path;
+            DatasourcePath = datasourcePath;
+            _expression = null;
         }
 
         public MappingBindingPair(string path, string datasourcePath, string expression)
         {
-            this._path = path;
-            this.DatasourcePath = datasourcePath;
-            this._expression = expression;
+            _path = path;
+            DatasourcePath = datasourcePath;
+            _expression = expression;
         }
 
         // METHODS

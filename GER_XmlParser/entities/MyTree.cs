@@ -1,4 +1,5 @@
-﻿using GER_XmlParser.utils;
+﻿using GER_XmlParser.entities.wrappers.data;
+using GER_XmlParser.utils;
 using System;
 using System.Collections.Generic;
 using System.DirectoryServices;
@@ -298,6 +299,45 @@ namespace GER_XmlParser.entities
             myTreeBinding.RemoveRoot(myRootBinding);
             myTreeBinding.Sort();
             return Tuple.Create<MyTree<MappingDatasourcePair>, MyTree<MappingBindingPair>>(myTreeDatasource, myTreeBinding);
+        }
+
+        public static MyTree<FormatPair> ComputeFromFormatFindRef(List<XmlNode> nodesFound, XmlNode nodeRootToBeExcluded, List<XmlNode> nodeBindingsFound, Dictionary<string, string> labels)
+        {
+            // radice unica temporanea che corrisponde al nodo 'Contents.'
+            MyTreeNode<FormatPair> myRoot = new MyTreeNode<FormatPair>(new FormatPair(nodeRootToBeExcluded), XmlNodeUtils.StringifyAsFormat(nodeRootToBeExcluded, labels));
+            MyTree<FormatPair> myTree = new MyTree<FormatPair>(myRoot);
+            foreach (XmlNode node in nodesFound)
+            {
+                XmlNode bindingNode;
+                try
+                {
+                    bindingNode = nodeBindingsFound.Where((n) =>
+                    {
+                        XmlAttribute attr = n.Attributes["Component"];
+                        if (attr != null) return node["ID."].Value == attr.Value;
+                        else return false;
+                    }).First();
+                } catch (InvalidOperationException)
+                {
+                    bindingNode = null;
+                }
+
+                List<XmlNode> parentsChainUntilNodeTobeExcluded = XmlNodeUtils.ParentsChainUntilReverse(node, nodeRootToBeExcluded, new HashSet<string>() { "Contents." });
+                XmlNode first = parentsChainUntilNodeTobeExcluded[0];
+                MyTreeNode<FormatPair> myCursor;
+                MyTreeNode<FormatPair> firstOfChain = myTree.Find(new FormatPair(first, bindingNode));
+                if (firstOfChain == null) firstOfChain = myRoot.AddChild(new FormatPair(first, bindingNode), XmlNodeUtils.StringifyAsFormat(first, labels));
+                myCursor = firstOfChain;
+                foreach (XmlNode cursor in parentsChainUntilNodeTobeExcluded.Skip(1))
+                {
+                    // aggiunta del figlio controllare se esiste già
+                    MyTreeNode<FormatPair> newMyCursor = myCursor.AddChild(new FormatPair(cursor, bindingNode), XmlNodeUtils.StringifyAsFormat(cursor, labels));
+                    myCursor = newMyCursor;
+                }
+            }
+            myTree.RemoveRoot(myRoot);
+            myTree.Sort();
+            return myTree;
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using Wmhelp.XPath2;
 
-namespace GER_XmlParser.entities
+namespace GER_XmlParser.entities.wrappers.file
 {
     public abstract class XmlFileWrapper
     {
@@ -15,21 +15,21 @@ namespace GER_XmlParser.entities
         protected string _filePath;
         protected XmlDocument _xmlParser;
         // PROPERTIES
-        public string FilePath { get { return this._filePath; } }
-        protected XmlDocument XmlParser { get { return this._xmlParser; } }
+        public string FilePath { get { return _filePath; } }
+        protected XmlDocument XmlParser { get { return _xmlParser; } }
 
         // CONSTRUCTORS
         public XmlFileWrapper(string filePath)
         {
-            this._filePath = filePath;
-            this._xmlParser = new XmlDocument();
-            this.XmlParser.Load(this.FilePath);
+            _filePath = filePath;
+            _xmlParser = new XmlDocument();
+            XmlParser.Load(FilePath);
         }
 
         // METHODS
         public XmlNode ComputeFirstXPath1(string xPath)
         {
-            return this.ComputeFirstXPath1(this.XmlParser, xPath);
+            return ComputeFirstXPath1(XmlParser, xPath);
         }
 
         protected XmlNode ComputeFirstXPath1(XmlNode startingNode, string xPath)
@@ -39,7 +39,7 @@ namespace GER_XmlParser.entities
 
         public List<XmlNode> ComputeXPath1(string xPath)
         {
-            return this.ComputeXPath1(this.XmlParser, xPath);
+            return ComputeXPath1(XmlParser, xPath);
 
         }
 
@@ -51,7 +51,7 @@ namespace GER_XmlParser.entities
 
         protected XmlNode ComputeFirstXPath2(string xPath)
         {
-            return this.ComputeFirstXPath2(this.XmlParser, xPath);
+            return ComputeFirstXPath2(XmlParser, xPath);
         }
 
         protected XmlNode ComputeFirstXPath2(XmlNode startingNode, string xPath)
@@ -61,7 +61,7 @@ namespace GER_XmlParser.entities
 
         protected List<XmlNode> ComputeXPath2(string xPath)
         {
-            return this.ComputeXPath2(this.XmlParser, xPath);
+            return ComputeXPath2(XmlParser, xPath);
         }
 
         protected List<XmlNode> ComputeXPath2(XmlNode startingNode, string xPath)
@@ -72,7 +72,7 @@ namespace GER_XmlParser.entities
 
         public void WriteFile()
         {
-            this.XmlParser.Save(this.FilePath);
+            XmlParser.Save(FilePath);
         }
     }
 }
